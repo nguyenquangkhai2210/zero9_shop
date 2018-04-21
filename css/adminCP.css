@@ -1,0 +1,21 @@
+/* li {
+    margin-top: 10% !important;
+    margin-left: 8% !important;
+}
+
+.col.s2 {
+    padding: 0;
+    margin-left: 1% !important;
+}
+.row{
+    box-sizing: border-box;
+}
+body{
+    box-sizing: border-box;
+} */
+
+.row {
+    padding-left: 1em;
+    box-sizing: border-box;
+    margin: 0;
+}
