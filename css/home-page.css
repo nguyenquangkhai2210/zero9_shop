@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    font-size: 100%;
+}
+
+html, body{
+    background-color: rgb(240, 240, 240);
+    position: relative;
+    height: 100%;
+}
+
+.wrap-navbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.shopping-cart{
+    display: inline-block;
+    margin: 0 1rem;
+    border-radius: 100%;
+    background-color: #ffffff;
+
+}
+.shopping-cart .count {
+    display: block;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+}
+
+.bgWhite{
+    background-color: #ffffff;
+}
+
+.dsBlock{
+    display: block;
+}
+
+.dsHidden{
+    display: none;
+}
+
+.icon-search{
+    background-image: url("../img/magnifier.png");
+    background-repeat: no-repeat;
+    background-position: 0.7rem center;
+    padding-left: 2.4rem;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: rgb(207, 207, 207);
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.swiper-slide .content-slide{
+    max-width: 50%;
+    margin-bottom: -20vh;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.swiper-slide-active .content-slide p {
+    position: relative;
+    opacity: 0;
+    animation: moveUp 1.5s forwards 0.5s;
+}
+.swiper-slide-active .content-slide h2 {
+    position: relative;
+    opacity: 0;
+    animation: moveUp 1.5s forwards 1.25s;
+}
+
+@keyframes moveUp {
+    from {
+        opacity: 0;
+        bottom: -20vh;
+    }
+    to {
+        opacity: 1;
+        bottom: 0vh;
+    }
+}
