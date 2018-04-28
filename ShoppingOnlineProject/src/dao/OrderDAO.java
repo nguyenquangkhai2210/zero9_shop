@@ -39,8 +39,13 @@ public class OrderDAO implements Serializable {
                 listOrder.add(order);
             }
         } finally {
-            rs.close();
-            psm.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
+            
         }
 
         return listOrder;
@@ -53,7 +58,9 @@ public class OrderDAO implements Serializable {
             psm = c.prepareStatement(query);
             result = psm.executeUpdate();
         } finally {
-            psm.close();
+            if (psm != null) {
+                psm.close();
+            }
         }
         return result;
     }

@@ -39,8 +39,12 @@ public class ProductModificationHistoryDAO implements Serializable {
                 listProductModificationHistory.add(proHis);
             }
         } finally {
-            rs.close();
-            psm.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
         }
         return listProductModificationHistory;
     }
@@ -52,7 +56,9 @@ public class ProductModificationHistoryDAO implements Serializable {
             psm = c.prepareStatement(query);
             result = psm.executeUpdate();
         } finally {
-            psm.close();
+            if (psm != null) {
+                psm.close();
+            }
         }
         return result;
     }

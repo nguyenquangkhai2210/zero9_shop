@@ -44,16 +44,28 @@ public class ProductDAO implements Serializable {
                 listProduct.add(product);
             }
         } finally {
-            rs.close();
-            psm.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
         }
 
         return listProduct;
     }
 
     public static int executeUpdate(String query, Connection c) throws SQLException {
-        PreparedStatement psm = c.prepareStatement(query);
-        int result = psm.executeUpdate();
+        PreparedStatement psm = null;
+        int result;
+        try {
+            psm = c.prepareStatement(query);
+            result = psm.executeUpdate();
+        } finally {
+            if (psm != null) {
+                psm.close();
+            }
+        }
         return result;
     }
 

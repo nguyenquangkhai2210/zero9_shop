@@ -44,8 +44,12 @@ public class CustomerDAO implements Serializable {
                 listCustomer.add(customer);
             }
         } finally {
-            rs.close();
-            psm.close();
+            if (rs != null) {
+                rs.close();
+            }
+            if (psm != null) {
+                psm.close();
+            }
         }
         return listCustomer;
     }
@@ -57,7 +61,9 @@ public class CustomerDAO implements Serializable {
             psm = c.prepareStatement(query);
             result = psm.executeUpdate();
         } finally {
-            psm.close();
+            if (psm != null) {
+                psm.close();
+            }
         }
         return result;
     }
