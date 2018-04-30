@@ -22,7 +22,7 @@ public class EmployeeDTO implements Serializable {
     private String empName;
     private String EmpPhone;
     private String empMail;
-    private String emAddress;
+    private String empAddress;
     private String empGender;
     private String empBirthdate;
     private String startDate;
@@ -36,7 +36,7 @@ public class EmployeeDTO implements Serializable {
         this.empName = empName;
         this.EmpPhone = EmpPhone;
         this.empMail = empMail;
-        this.emAddress = emAddress;
+        this.empAddress = emAddress;
         this.empGender = empGender;
         this.empBirthdate = empBirthdate;
         this.startDate = startDate;
@@ -51,7 +51,7 @@ public class EmployeeDTO implements Serializable {
         this.empName = empName;
         this.EmpPhone = EmpPhone;
         this.empMail = empMail;
-        this.emAddress = emAddress;
+        this.empAddress = emAddress;
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
         this.startDate = date.format(Calendar.getInstance().getTime());
         this.roleId = RoleId;
@@ -81,8 +81,8 @@ public class EmployeeDTO implements Serializable {
         return empMail;
     }
 
-    public String getEmAddress() {
-        return emAddress;
+    public String getEmpAddress() {
+        return empAddress;
     }
 
     public String getEmpGender() {
@@ -129,8 +129,8 @@ public class EmployeeDTO implements Serializable {
         this.empMail = empMail;
     }
 
-    public void setEmAddress(String emAddress) {
-        this.emAddress = emAddress;
+    public void setEmpAddress(String empAddress) {
+        this.empAddress = empAddress;
     }
 
     public void setEmpGender(String empGender) {
@@ -155,7 +155,7 @@ public class EmployeeDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "EmployeeDTO{" + "empId=" + empId + ", empUsername=" + empUsername + ", empPassword=" + empPassword + ", empName=" + empName + ", EmpPhone=" + EmpPhone + ", empMail=" + empMail + ", emAddress=" + emAddress + ", empGender=" + empGender + ", empBirthdate=" + empBirthdate + ", startDate=" + startDate + ", endDate=" + endDate + ", roleId=" + roleId + '}';
+        return "EmployeeDTO{" + "empId=" + empId + ", empUsername=" + empUsername + ", empPassword=" + empPassword + ", empName=" + empName + ", EmpPhone=" + EmpPhone + ", empMail=" + empMail + ", emAddress=" + empAddress + ", empGender=" + empGender + ", empBirthdate=" + empBirthdate + ", startDate=" + startDate + ", endDate=" + endDate + ", roleId=" + roleId + '}';
     }
 
 }

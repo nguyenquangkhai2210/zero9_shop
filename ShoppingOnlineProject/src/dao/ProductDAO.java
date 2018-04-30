@@ -33,14 +33,14 @@ public class ProductDAO implements Serializable {
                 String id = rs.getString("ProID");
                 String name = rs.getString("ProName");
                 String des = rs.getString("ProDescription");
+                String cate = rs.getString("Categeries");
                 float price = rs.getInt("ProPrice");
-                String image = rs.getString("ProImage");
                 int stock = rs.getInt("Stock");
                 String createdTime = rs.getString("CreatedTime");
                 boolean isActive = rs.getBoolean("isActive");
                 int saleOff = rs.getInt("SaleOff");
                 int point = rs.getInt("ReservedPoint");
-                ProductDTO product = new ProductDTO(id, name, des, price, image, stock, createdTime, isActive, saleOff, point);
+                ProductDTO product = new ProductDTO(id, name, des, price, stock, cate, createdTime, isActive, saleOff, point);
                 listProduct.add(product);
             }
         } finally {

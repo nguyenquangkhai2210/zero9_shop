@@ -5,8 +5,7 @@
  */
 package dao;
 
-import dto.OrderDTO;
-import java.io.Serializable;
+import dto.ProductImageDTO;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,26 +17,21 @@ import java.util.ArrayList;
  *
  * @author PhuNDSE63159
  */
-public class OrderDAO implements Serializable {
+public class ProImageDAO {
 
-    public static ArrayList<OrderDTO> executeQuery(String query, Connection c) throws SQLException, NoSuchAlgorithmException {
+    public static ArrayList<ProductImageDTO> executeQuery(String query, Connection c) throws SQLException, NoSuchAlgorithmException {
         PreparedStatement psm = null;
         ResultSet rs = null;
-        ArrayList<OrderDTO> listOrder = null;
+        ArrayList<ProductImageDTO> listProductImage = null;
         try {
             psm = c.prepareStatement(query);
             rs = psm.executeQuery();
-            listOrder = new ArrayList<>();
+            listProductImage = new ArrayList<>();
             while (rs.next()) {
-                String orderId = rs.getString("OrderID");
-                String createdTime = rs.getString("CreatedTime");
-                double orderSum = rs.getFloat("Catefories");
-                int point = rs.getInt("Point");
-                boolean isAvaiable = rs.getBoolean("isAvailable");
-                String code = rs.getString("Code");
-                String cusId = rs.getString("CusID");
-                OrderDTO order = new OrderDTO(orderId, createdTime, orderSum, point, isAvaiable, code, cusId);
-                listOrder.add(order);
+                String proId = rs.getString("ProID");
+                String proImage = rs.getString("ProImage");
+                ProductImageDTO p = new ProductImageDTO(proId, proImage);
+                listProductImage.add(p);
             }
         } finally {
             if (rs != null) {
@@ -46,10 +40,9 @@ public class OrderDAO implements Serializable {
             if (psm != null) {
                 psm.close();
             }
-
         }
 
-        return listOrder;
+        return listProductImage;
     }
 
     public static int executeUpdate(String query, Connection c) throws SQLException {
@@ -65,5 +58,4 @@ public class OrderDAO implements Serializable {
         }
         return result;
     }
-
 }

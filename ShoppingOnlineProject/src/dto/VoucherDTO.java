@@ -50,7 +50,7 @@ public class VoucherDTO implements Serializable{
         return saleOff;
     }
 
-    public boolean isIsActive() {
+    public boolean isActive() {
         return isActive;
     }
 
@@ -78,7 +78,7 @@ public class VoucherDTO implements Serializable{
         this.saleOff = saleOff;
     }
 
-    public void setIsActive(boolean isActive) {
+    public void isActive(boolean isActive) {
         this.isActive = isActive;
     }
 
