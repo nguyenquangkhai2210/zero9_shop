@@ -1,0 +1,12 @@
+.wrap-product{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.wrap-product .item {
+    width: 200px;
+    padding: 25px;
+    border: 1px solid #b6b6b6;
+    border-radius: 10px;
+    text-align: center;
+}

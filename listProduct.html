@@ -1,25 +1,27 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html ng-app="myApp" lang="en">
 
 <head>
-    <title>Zero 9</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="./css/listProduct.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/home-page.css">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="./css/swiper.min.css">
-    <!-- AOS CSS -->
-    <link rel="stylesheet" href="./css/aos.css">
+
     <script src="./lib/angular.min.js"></script>
+    <script src="./lib/angular-router.min.js"></script>
+    <script src="./lib/angular-cookies.min.js"></script>
+    <script src="./lib/angular-sanitize.min.js"></script>
+    <script src="./lib/angular-animate.min.js"></script>
+    <script src="./lib/lodash.js"></script>
 </head>
 
-<body ng-app="homePage">
-    <div class="wrap-navbar">
-        <nav ng-controller="navbar" ng-class="bgColorNav" class="navbar navbar-expand-lg navbar-light">
+<body>
+    <!-- <div class="wrap-navbar">
+        <nav ng-app="homePage" ng-controller="navbar" ng-class="bgColorNav" class="navbar navbar-expand-lg navbar-light">
             <button class="navbar-toggler" type="button" ng-click="controlMiniBar()">
                 <span ng-class="icon"></span>
             </button>
@@ -219,93 +221,59 @@
                 </ul>
             </div>
         </nav>
-    </div>
-    <!-- Swiper -->
-    <div class="swiper-container" ng-controller="window" ng-mouseover="clearColorNav()">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide" style="background-image: url('./img/home-seaside-2500x0-c-default.jpg')" data-aos="zoom-out">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
+    </div> -->
+    <div ng-controller="controllerListProduct as vm">
+        <div class="text-center">
+            <!-- items being paged -->
+            <h1>STORE</h1>
+            <div class="wrap-product">
+                <div class="item" ng-repeat="product in vm.products">
+                    <img width="100" height="100" src="https://lh3.googleusercontent.com/-M_NiblLM-0A/Vh9eSY5LIeI/AAAAAAAAB_I/VBeV8X1V2HM/s144-Ic42/mac.jpg">
+                    <p>{{product.name}}</p>
+                    <h3>{{product.price | currency}}</h3>
+                    <button ng-click="addItemToCart(product)">BUY</button>
                 </div>
             </div>
-            <div class="swiper-slide" style="background-image: url('./img/desktop-2500x0-c-default.jpg')" data-aos="zoom-out">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/alisa-anton-144490-unsplash.jpg')" data-aos="fade-down-left">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/andrew-neel-369701-unsplash.jpg')" data-aos="fade-down-right">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/david-lezcano-225889-unsplash.jpg')" data-aos="fade-down-left">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/heather-schwartz-528986-unsplash.jpg')" data-aos="fade-down-right">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/nordwood-themes-162465-unsplash.jpg')" data-aos="fade-down-left">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/alex-blajan-88214-unsplash.jpg')" data-aos="fade-down-right">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/180330_Tonal_totaal_3-2500x0-c-default.jpg')" data-aos="fade-down-left">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
-            </div>
-            <div class="swiper-slide" style="background-image: url('./img/jared-weiss-228316-unsplash.jpg')" data-aos="fade-down-right">
-                <div class="content-slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                    <h2>Lorem ipsum dolor</h2>
-                </div>
+
+            <!-- pager -->
+            <ul ng-if="vm.pager.pages.length" class="pagination">
+                <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                    <a ng-click="vm.setPage(1)">First</a>
+                </li>
+                <li ng-class="{disabled:vm.pager.currentPage === 1}">
+                    <a ng-click="vm.setPage(vm.pager.currentPage - 1)">Previous</a>
+                </li>
+                <li ng-repeat="page in vm.pager.pages" ng-class="{active:vm.pager.currentPage === page}">
+                    <a ng-click="vm.setPage(page)">{{page}}</a>
+                </li>
+                <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                    <a ng-click="vm.setPage(vm.pager.currentPage + 1)">Next</a>
+                </li>
+                <li ng-class="{disabled:vm.pager.currentPage === vm.pager.totalPages}">
+                    <a ng-click="vm.setPage(vm.pager.totalPages)">Last</a>
+                </li>
+            </ul>
+
+            <!-- Shopping cart -->
+            <div ng-show="cart.length !== 0">
+                <h1>CART-SHOW</h1>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="c in cart">
+                        <h4>{{c.name}} |
+                            <span style="color:blue"> {{c.count}} </span>
+                            | {{c.price*c.count | currency}}</h4>
+                        <input type="button" ng-click="removeItemCart(c)" value="Remove" />
+                    </li>
+                </ul>
+                Total : {{total | currency}}
+                <br>
+                <button type="submit" ng-click="submit()">Submit</button>
             </div>
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
     </div>
 
-    <!-- Initialize Swiper AOS JS-->
-    <script src="./js/aos.js"></script>
-    <script src="./js/swiper.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            direction: 'vertical',
-            slidesPerView: 1,
-            mousewheel: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-        });
-        AOS.init({
-            duration: 2000,
-        })
-    </script>
-    <script src="./js/home-page.js"></script>
+    <script src="./js/listProduct.js"></script>
+    <!-- <script src="./js/home-page.js"></script> -->
 </body>
 
 </html>

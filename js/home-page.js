@@ -1,6 +1,8 @@
-var shoppingCart = angular.module("shoppingCart", []);
+var app = angular.module("homePage", []);
 
-shoppingCart.controller("navbar", function ($scope, $rootScope,$timeout) {
+app.controller("navbar", controllerNavbar);
+
+function controllerNavbar ($scope, $rootScope,$timeout) {
     $scope.display = "dsHidden";
     $scope.textColor = "text-white";
     $scope.icon = "navbar-toggler-icon-white";
@@ -45,9 +47,9 @@ shoppingCart.controller("navbar", function ($scope, $rootScope,$timeout) {
         $scope.choosedInfo = choose;
         $scope.addColor();
     }
-})
+}
 
-shoppingCart.controller("window", function ($scope, $rootScope, $window) {
+app.controller("window", function ($scope, $rootScope, $window) {
     $scope.clearColorNav = function () {
         if($window.innerWidth > 991)
             $rootScope.$emit("clearFromParent", {});
