@@ -26,35 +26,171 @@
             <a ng-class="textColor" class="navbar-brand text-white h3" href="#">Zero 9.</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Hat</a>
-                        <div class="wrap-info"></div>
+                    <li ng-mouseover="chooseInfo('hat')" class="nav-item type-products">
+                        <a ng-class="linkColor" class="nav-link" href="#">Hat</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shirt</a>
+                    <li ng-mouseover="chooseInfo('shirt')" class="nav-item type-products">
+                        <a ng-class="linkColor" class="nav-link" href="#">Shirt</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pants</a>
+                    <li ng-mouseover="chooseInfo('pants')" class="nav-item type-products">
+                        <a ng-class="linkColor" class="nav-link" href="#">Pants</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Shoes</a>
+                    <li ng-mouseover="chooseInfo('shoes')" class="nav-item type-products">
+                        <a ng-class="linkColor" class="nav-link" href="#">Shoes</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Accessories</a>
+                    <li ng-mouseover="chooseInfo('accessories')" class="nav-item type-products">
+                        <a ng-class="linkColor" class="nav-link" href="#">Accessories</a>
                     </li>
+                    <div ng-class="choosedInfo" class="dropdowns-info">
+                        <div class="wrap-info hat">
+                            <div class="layout-info">
+                                <div class="content-info">
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p></p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <a class="showWeb uniderLine" href="#">Show all</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrap-info shirt">
+                            <div class="layout-info">
+                                <div class="content-info">
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <a class="showWeb uniderLine" href="#">Show all</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrap-info pants">
+                            <div class="layout-info">
+                                <div class="content-info">
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <a class="showWeb uniderLine" href="#">Show all</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrap-info shoes">
+                            <div class="layout-info">
+                                <div class="content-info">
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <a class="showWeb uniderLine" href="#">Show all</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrap-info accessories">
+                            <div class="layout-info">
+                                <div class="content-info">
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <div class="item">
+                                        <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                        <h4 class="uniderLine">Lorem ipsum</h4>
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit</p>
+                                    </div>
+                                    <a class="showWeb uniderLine" href="#">Show all</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Search</a>
+                        <a ng-class="linkColor" class="nav-link" href="#">Search</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Company</a>
+                        <a ng-class="linkColor" class="nav-link" href="#">Company</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Help</a>
+                        <a ng-class="linkColor" class="nav-link" href="#">Help</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Account</a>
+                        <a ng-class="linkColor" class="nav-link" href="#">Account</a>
                     </li>
                 </ul>
             </div>
@@ -85,7 +221,7 @@
         </nav>
     </div>
     <!-- Swiper -->
-    <div class="swiper-container">
+    <div class="swiper-container" ng-controller="window" ng-mouseover="clearColorNav()">
         <div class="swiper-wrapper">
             <div class="swiper-slide" style="background-image: url('./img/home-seaside-2500x0-c-default.jpg')" data-aos="zoom-out">
                 <div class="content-slide">

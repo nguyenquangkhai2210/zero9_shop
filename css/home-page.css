@@ -17,6 +17,103 @@ html, body{
     z-index: 1000;
 }
 
+.navbar-nav .hat .hat{
+    display: block !important;
+}
+.navbar-nav .shirt .shirt{
+    display: block !important;
+}
+.navbar-nav .pants .pants{
+    display: block !important;
+}
+.navbar-nav .shoes .shoes{
+    display: block !important;
+}
+.navbar-nav .accessories .accessories{
+    display: block !important;
+}
+
+.navbar-nav .dropdowns-info .wrap-info{
+    display: none;
+    position: fixed;
+    top: 1vh;
+    left: 1.5%;
+    width: 97%;
+    height: 98vh;
+    z-index: -1;
+    animation: showInfo 1.5s forwards;
+}
+
+.colorNavbar{
+    color: #585858 !important;
+}
+
+.navbar-nav .dropdowns-info .wrap-info .layout-info{
+    width: 100%;
+    height: 100%;
+    padding-top: 68px;
+    background-color: #ffffff;
+}
+
+.navbar-nav .dropdowns-info .wrap-info .layout-info .content-info{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+.uniderLine::after{
+    display: table;
+    content: " ";
+    width: 0;
+    height: 1px;
+    background-color: #585858;
+}
+
+.wrap-info .layout-info .content-info .item{
+    width: 22%;
+    height: 100%;
+    margin-top: 1rem;
+    color: #585858;
+}
+
+.wrap-info .layout-info .content-info .item .img{
+    width: 100%;
+    height: 50%;
+    margin-bottom: 1.5rem;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.wrap-info .layout-info .content-info .item h4{
+    display: inline-block;
+    width: auto;
+    line-height: 1.9rem;
+    font-size: 1.25rem;
+}
+
+.wrap-info .layout-info .content-info .item p{
+    font-size: 0.9rem;
+}
+
+.wrap-info .layout-info .content-info .showWeb{
+    position: absolute;
+    bottom: 2rem;
+    color: #585858;
+    text-decoration: none;  
+}
+
+.wrap-info .layout-info .content-info .item:hover .uniderLine::after{
+    animation: moveUnderline 0.5s forwards;
+}
+
+.wrap-info .layout-info .content-info .uniderLine:hover::after{
+    animation: moveUnderline 0.5s forwards;
+}
+
 .shopping-cart{
     display: inline-block;
     margin: 0 1rem;
@@ -104,5 +201,27 @@ html, body{
     to {
         opacity: 1;
         bottom: 0vh;
+    }
+}
+
+@keyframes moveUnderline{
+    from{
+        opacity: 0;
+        width: 0;
+    }
+    to {
+        opacity: 1;
+        width: 100%;
+    }
+}
+
+@keyframes showInfo{
+    from{
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    to {
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 }
