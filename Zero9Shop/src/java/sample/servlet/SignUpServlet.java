@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sample.customer.CustomerDAO;
 import sample.employee.EmployeeDAO;
 
 /**
@@ -32,10 +34,20 @@ public class SignUpServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            String username = request.getParameter("txtUsername");
-            String password = request.getParameter("txtPassword");
-            EmployeeDAO dao = new EmployeeDAO();
-           
+            String username = "";
+            String password = "";
+            String email = "";
+            String fullName = "";
+            String phone = ""; 
+            String gender = "";
+            String address = ""; //get parameter from user
+            CustomerDAO dao = new CustomerDAO();
+            boolean result = dao.signUp(username, password, email, fullName, phone, gender, address);
+            if (result) {
+                // sucesss
+            } else{
+                // fail
+            }
         } finally {
             out.close();
         }

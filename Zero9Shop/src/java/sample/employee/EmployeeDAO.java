@@ -84,7 +84,7 @@ public class EmployeeDAO implements Serializable {
     public boolean checkLogin(String username, String password) {
         try {
             Connection conn = sample.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT * FROM Registration WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM tblEmployee WHERE username = ? AND password = ?";
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
@@ -100,10 +100,15 @@ public class EmployeeDAO implements Serializable {
         }
         return false;
     }
-   public boolean signUp(String username, String password)
-   {
-       
-    
-    return false;
-   }
+//    public boolean signUp(String username, String password, String email, String fullName, String phone, String gender, String address)
+//    {
+//        try {
+//         Connection conn = sample.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+//         String sql = "INSERT INTO";
+//         PreparedStatement stm = conn.prepareStatement(sql);
+//        } catch (Exception e) {
+          
+//        }
+//     return false;
+//    }
 }
