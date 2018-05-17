@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,9 @@ import shop.customer.CustomerDAO;
  * @author THANH HUNG
  */
 public class SignUpServlet extends HttpServlet {
+
+    final static String signUp = "signUp.jsp";
+    final static String loginPage = "login.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,20 +38,23 @@ public class SignUpServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String url = signUp;
         try {
-            String username = "";
-            String password = "";
-            String email = "";
-            String fullName = "";
-            String phone = ""; 
-            String gender = "";
-            String address = ""; //get parameter from user
+            String username = request.getParameter("txtUsername");
+            String password = request.getParameter("txtPassword");
+            String email = request.getParameter("txtEmail");
+            String fullName = request.getParameter("txtFullName");
+            String phone = request.getParameter("txtPhone");
+            String gender = request.getParameter("chkGender");
+            String address = request.getParameter("txtAddress"); //get parameter from user
             boolean result = CustomerDAO.signUp(username, password, email, fullName, phone, gender, address);
             if (result) {
-                // sucesss
-            } else{
-                // fail
+                url = loginPage;
+            } else {
+                url = signUp;
             }
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SignUpServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

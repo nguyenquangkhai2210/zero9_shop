@@ -7,20 +7,18 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author THANH HUNG
  */
-public class MainControllerServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
-    final static String signUpPage = "signUp.jsp";
     final static String loginPage = "login.jsp";
 
     /**
@@ -34,29 +32,13 @@ public class MainControllerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         PrintWriter out = response.getWriter();
         try {
-            String button = request.getParameter("btAction");
-            
-            if (null == button) {
-                //
-            } else switch (button) {
-                case "Login":
-                    new LoginServlet().processRequest(request, response);
-                    break;
-                case "SignUp":
-                    new SignUpServlet().processRequest(request, response);
-                    break;
-                case "Logout":
-                    new LogoutServlet().processRequest(request, response);
-                    break;
-                default:
-                    
-                    break;
-            }
-        } catch (Exception e) {
-
+            HttpSession session = request.getSession();
+            if (session.getAttribute("username") != null) {
+                session.removeAttribute("username");
+                response.sendRedirect(loginPage);
+                      }
         } finally {
             out.close();
         }

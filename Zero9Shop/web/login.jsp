@@ -28,7 +28,7 @@
                     <div class="card-header text-center bg-light">
                         <h1 class="font-weight-light">Login website</h1>
                     </div>
-                    <form class="px-4 py-3" method="POST" action="LoginServlet">
+                    <form class="px-4 py-3" method="POST" action="MainControllerServlet">
                         <div class="form-group">
                             <label>Username</label>
                             <input type="text" class="form-control" placeholder="hungpt" name="txtUsername" required>

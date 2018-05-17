@@ -68,7 +68,7 @@ public class ProductDAO implements Serializable {
         }
         return result;
     }
-//
+
 //    public List<ProductDTO> listProduct() {
 //        Connection conn = null;
 //        PreparedStatement stm = null;

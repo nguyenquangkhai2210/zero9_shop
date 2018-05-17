@@ -26,44 +26,43 @@
         <div class="d-flex justify-content-center align-items-center col-lg-12" style="height: 53em;">
             <div class="card bg-light col-lg-4">
                 <h1 class="font-weight-light text-center">Sign in with us</h1>
-                <form action="SignUpServlet" method="POST">
+                <form action="MainControllerServlet" method="POST">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Username</label>
+                            <input type="text" class="form-control" placeholder="userfu" name="txtUsername">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password" name="txtPassword">
+                        </div>
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Email</label>
                             <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="txtEmail">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Username</label>
-                            <input type="text" class="form-control" placeholder="userfu">
-                        </div>
-                        <div class="form-group col-md-6">
                             <label for="inputAddress">Fullname</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Phan Thanh Hung">
+                            <input type="text" class="form-control" id="inputAddress" placeholder="Phan Thanh Hung" name="txtFullName">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Phone</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="txtPhone">
                         </div>
                         <div class="form-group col-md-6">
                             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
-                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option selected>Choose...</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                            </select>
+                            <br>
+                            <label class="radio-inline mr-2 mt-2"><input type="radio" name="chkGender" >Male</label>
+                            <label class="radio-inline ml-2 mt-2"><input type="radio" name="chkGender">Female</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" placeholder="HCMC">
+                        <input type="text" class="form-control" id="inputAddress" placeholder="HCMC" name="txtAddress">
                     </div>
                     <div class="form-group">
                         <div class="form-check">
@@ -74,13 +73,13 @@
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center col-lg-12">
-                        <button type="submit" class="btn btn-primary col-lg-6 mb-3">Sign up</button>
+                        <button type="submit" class="btn btn-primary col-lg-6 mb-3" value="SignUp" name="btAction">Sign up</button>
                     </div>
                 </form>
 
                 <div class="dropdown-divider"></div>
                 <div class="row d-flex justify-content-center col-lg-12">
-                    <a href="login.jsp"  class="btn btn-outline-success col-lg-6 mb-2" value="SignUp" name="btAction">Have account? Login</a>
+                    <a href="login.jsp"  class="btn btn-outline-success col-lg-6 mb-2" >Have account? Login</a>
                 </div>
             </div>
         </div>

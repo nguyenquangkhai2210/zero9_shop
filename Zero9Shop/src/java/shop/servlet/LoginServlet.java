@@ -7,6 +7,7 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,7 @@ import shop.employee.EmployeeDAO;
  */
 public class LoginServlet extends HttpServlet {
 
-    final static String orderPage = "order.html";
+    final static String orderPage = "order.jsp";
     final static String loginPage = "login.jsp";
 
     /**
@@ -46,12 +47,16 @@ public class LoginServlet extends HttpServlet {
             boolean result = EmployeeDAO.checkLogin(username, password);
             if (result) {
                 url = orderPage;
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
             } 
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();

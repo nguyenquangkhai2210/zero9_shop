@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import shop.customer.CustomerDTO;
+import shop.utils.DBUtils;
+import shop.utils.EncryptionUtils;
 
 /**
  *
@@ -84,37 +86,27 @@ public class EmployeeDAO implements Serializable {
                 return true;
             }
         } finally {
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+            DBUtils.closeConnection(conn, stm);
         }
         return false;
     }
 
-    public static boolean checkLogin(String username, String password) throws ClassNotFoundException, SQLException {
+    public static boolean checkLogin(String username, String password) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         Connection conn = null;
         PreparedStatement stm = null;
+        ResultSet rs = null;
         try {
             conn = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
             String sql = "SELECT * FROM tblEmployee WHERE EmpUsername = ? AND EmpPassword = ?";
             stm = conn.prepareStatement(sql);
             stm.setString(1, username);
-            stm.setString(2, password);
-            ResultSet rs = stm.executeQuery();
+            stm.setString(2, EncryptionUtils.md5(password));
+            rs = stm.executeQuery();
             if (rs.next()) {
                 return true;
             }
         } finally {
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-            
+            DBUtils.closeConnection(conn, stm, rs);
         }
         return false;
     }
@@ -153,27 +145,9 @@ public class EmployeeDAO implements Serializable {
             String role = rs.getString("RoleID");
             employee = new EmployeeDTO(mail, username, "", name, phone, mail, address, gender, birthdate, startDate, endDate, role);
         } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (psm != null) {
-                psm.close();
-            }
-            if (rs != null) {
-                rs.close();
-            }
+            DBUtils.closeConnection(c, psm, rs);
         }
         return employee;
     }
 
-//    public boolean signUp(String username, String password, String email, String fullName, String phone, String gender, String address)
-//    {
-//        try {
-//         Connection conn = sample.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-//         String sql = "INSERT INTO";
-//         PreparedStatement stm = conn.prepareStatement(sql);
-//        } catch (Exception e) {
-//        }
-//     return false;
-//    }
 }

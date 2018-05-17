@@ -11,7 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import shop.utils.DBUtils;
 
 /**
  *
@@ -70,29 +74,38 @@ public class CustomerDAO implements Serializable {
     public static boolean signUp(String username, String password, String email, String fullName, String phone, String gender, String address) throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
+        ResultSet rs = null;
+        String finalID = null;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime now = LocalDateTime.now();
         try {
             conn = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "INSERT INTO tblCustomer(CusUsername, CusPassword, CusMail, CusName, CusPhone, CusGender, CusAddress, Point)"
-                    + "Values(?,?,?,?,?,?,?,0)";
+            String sqlGetID = "SELECT TOP 1 CusID FROM tblCustomer ORDER BY CusID DESC";
+            stm = conn.prepareStatement(sqlGetID);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String ID = rs.getString("CusID");
+                int index = Integer.parseInt(ID.substring(1)) + 1;
+                finalID = "C0" + index;
+            }
+            String sql = "INSERT INTO tblCustomer(CusID,CusUsername , CusPassword, CusMail, CusName, CusPhone, CusGender, CusAddress,StartDate, Point) Values (?,?,?,?,?,?,?,?,?,0)";
             stm = conn.prepareStatement(sql);
-            stm.setString(1, username);
-            stm.setString(2, password);
-            stm.setString(3, email);
-            stm.setString(4, fullName);
-            stm.setString(5, phone);
-            stm.setString(6, gender);
-            stm.setString(7, address);
+            stm.setString(1, finalID);
+            stm.setString(2, username);
+            stm.setString(3, password);
+            stm.setString(4, email);
+            stm.setString(5, fullName);
+            stm.setString(6, phone);
+            stm.setString(7, gender);
+            stm.setString(8, address);
+            stm.setString(9, dtf.format(now));
+            System.out.println(stm);
             int result = stm.executeUpdate();
             if (result > 0) {
                 return true;
             }
         } finally {
-            if (stm != null) {
-                stm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
+            DBUtils.closeConnection(conn, stm, rs);
         }
         return false;
     }
@@ -131,15 +144,7 @@ public class CustomerDAO implements Serializable {
             int point = rs.getInt("Point");
             customer = new CustomerDTO(id, username, "", cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate, startDate, point);
         } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (psm != null) {
-                psm.close();
-            }
-            if (rs != null) {
-                rs.close();
-            }
+            DBUtils.closeConnection(c, psm, rs);
         }
         return customer;
     }
