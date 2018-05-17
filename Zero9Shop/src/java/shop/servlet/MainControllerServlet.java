@@ -51,6 +51,9 @@ public class MainControllerServlet extends HttpServlet {
                 case "Logout":
                     new LogoutServlet().processRequest(request, response);
                     break;
+                case "Product":
+                    new ViewProduct().processRequest(request, response);
+                    break;
                 default:
                     
                     break;

@@ -2,7 +2,7 @@
 <html lang="en">
 
     <head>
-        <title>Order</title>
+        <title>Order Page</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,7 +37,7 @@
                             <a class="nav-link" href="#">Employee</a>
                         </li>
                         <li class="nav-item d-block d-sm-none">
-                            <a class="nav-link" href="#">Product</a>
+                            <a class="nav-link" href="#" >Product</a>
                         </li>
                         <li class="nav-item d-block d-sm-none">
                             <a class="nav-link" href="#">Promotion</a>
@@ -74,13 +74,14 @@
             <div class="col-lg-1 bg-light mr-0 ml-0 pl-0 d-none d-xl-block">
                 <div class="col-lg-12 ml-0" style="height: 53em;">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">Dashboard</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light active">Order</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">Customer</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light ">Employee</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">Product</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">Promotion</a>
-
+                        <form action="MainControllerServlet" method="POST">
+                            <a href="#" class="list-group-item list-group-item-action list-group-item-light">Dashboard</a>
+                            <a href="#" class="list-group-item list-group-item-action list-group-item-light active">Order</a>
+                            <a href="#" class="list-group-item list-group-item-action list-group-item-light">Customer</a>
+                            <a href="#" class="list-group-item list-group-item-action list-group-item-light ">Employee</a>
+                            <button class="list-group-item list-group-item-action list-group-item-light" name="btAction" value ="Product" type="submit" name="btAction">Product</button>
+                            <button class="list-group-item list-group-item-action list-group-item-light btn" >Promotion</button>
+                        </form>
                     </div>
                 </div>
             </div>

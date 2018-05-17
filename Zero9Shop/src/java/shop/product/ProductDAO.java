@@ -11,7 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import shop.utils.DBUtils;
 
@@ -69,14 +72,33 @@ public class ProductDAO implements Serializable {
         return result;
     }
 
-//    public List<ProductDTO> listProduct() {
-//        Connection conn = null;
-//        PreparedStatement stm = null;
-//        try {
-//            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-//            String sql = "";
-//        } catch (Exception e) {
-//        }
-//    }
+    public List<ProductDTO> listProduct() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT ProID, ProName, ProPrice, Stock, CreatedTime, isActive, SaleOff FROM tblProduct";
+            stm = conn.prepareStatement(sql);
+            rs = stm.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("ProID");
+                String name = rs.getString("ProName");
+                int price = rs.getInt("ProPrice");
+                int stock = rs.getInt("Stock");
+                Date createTime = rs.getDate("CreatedTime");
+                String createTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(createTime);
+                boolean isActive = rs.getBoolean("isActive");
+                int saleOff = rs.getInt("SaleOff");
+                ProductDTO tmp = new ProductDTO(id, name, price, stock, createTimeFormat, isActive, saleOff);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
 
 }
