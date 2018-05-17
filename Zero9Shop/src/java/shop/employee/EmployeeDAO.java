@@ -99,14 +99,12 @@ public class EmployeeDAO implements Serializable {
         PreparedStatement stm = null;
         try {
             conn = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT * FROM tblEmployee WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM tblEmployee WHERE EmpUsername = ? AND EmpPassword = ?";
             stm = conn.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, password);
             ResultSet rs = stm.executeQuery();
-            boolean result = rs.next();
-            rs.close();
-            if (result) {
+            if (rs.next()) {
                 return true;
             }
         } finally {
@@ -116,6 +114,7 @@ public class EmployeeDAO implements Serializable {
             if (conn != null) {
                 conn.close();
             }
+            
         }
         return false;
     }
@@ -124,6 +123,7 @@ public class EmployeeDAO implements Serializable {
      * This function is used to get profile of a employee who has <i>username<i>.
      * <br>
      * Username of employee is unique key so you can use to find customer
+     *
      * @param username: username in the database
      * @return EmployeeDTO with all information except password is set to null
      * @throws ClassNotFoundException
@@ -166,7 +166,6 @@ public class EmployeeDAO implements Serializable {
         return employee;
     }
 
-
 //    public boolean signUp(String username, String password, String email, String fullName, String phone, String gender, String address)
 //    {
 //        try {
@@ -174,7 +173,6 @@ public class EmployeeDAO implements Serializable {
 //         String sql = "INSERT INTO";
 //         PreparedStatement stm = conn.prepareStatement(sql);
 //        } catch (Exception e) {
-
 //        }
 //     return false;
 //    }

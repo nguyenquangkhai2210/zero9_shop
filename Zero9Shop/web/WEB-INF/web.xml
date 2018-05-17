@@ -20,6 +20,10 @@
         <servlet-name>ViewProfileEmployeeServlet</servlet-name>
         <servlet-class>shop.servlet.ViewProfileEmployeeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MainControllerServlet</servlet-name>
+        <servlet-class>shop.servlet.MainControllerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
@@ -40,9 +44,16 @@
         <servlet-name>ViewProfileEmployeeServlet</servlet-name>
         <url-pattern>/ViewProfileEmployeeServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MainControllerServlet</servlet-name>
+        <url-pattern>/MainControllerServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

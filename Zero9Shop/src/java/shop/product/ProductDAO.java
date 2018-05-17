@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import shop.utils.DBUtils;
 
 /**
  *
@@ -66,5 +68,15 @@ public class ProductDAO implements Serializable {
         }
         return result;
     }
+//
+//    public List<ProductDTO> listProduct() {
+//        Connection conn = null;
+//        PreparedStatement stm = null;
+//        try {
+//            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+//            String sql = "";
+//        } catch (Exception e) {
+//        }
+//    }
 
 }

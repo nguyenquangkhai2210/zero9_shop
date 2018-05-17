@@ -7,25 +7,16 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import shop.employee.EmployeeDAO;
 
 /**
  *
  * @author THANH HUNG
  */
-public class LoginServlet extends HttpServlet {
-
-    final static String orderPage = "order.html";
-    final static String loginPage = "login.jsp";
+public class MainControllerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,21 +30,15 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        String url = loginPage;
         try {
-            String username = request.getParameter("txtUsername");
-            String password = request.getParameter("txtPassword");
-            boolean result = EmployeeDAO.checkLogin(username, password);
-            if (result) {
-                url = orderPage;
+            String button = request.getParameter("btAction");
+            String url = "";
+            if (button == null) {
+                //
             } 
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        } catch(Exception e){
+            
+        } finally{
             out.close();
         }
     }
