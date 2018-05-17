@@ -1,0 +1,58 @@
+<div class="wrap-navbar">
+    <nav ng-class="bgColorNav" class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" ng-click="controlMiniBar()">
+            <span ng-class="icon"></span>
+        </button>
+        <a ng-class="textColor" class="navbar-brand text-white h3" href="#">Zero 9.</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li ng-repeat="type in productType" ng-mouseover="chooseInfo(type)" class="nav-item type-products">
+                    <a ng-class="linkColor" class="nav-link" href="#">{{type}}</a>
+                </li>
+                <div ng-class="choosedInfo" class="dropdowns-info">
+                    <div ng-repeat="type in productType" ng-mouseover="clearColorNav()" ng-class="type" class="wrap-info">
+                        <div ng-mouseleave="openSwitch()" class="layout-info">
+                            <div class="content-info">
+                                <div ng-repeat="products in productsData" class="item">
+                                    <div class="img" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"></div>
+                                    <h4 class="uniderLine">{{products.name}}</h4>
+                                    <p>{{products.info}}</p>
+                                </div>
+                                <a class="showWeb uniderLine" href="#">Show all</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a ng-class="linkColor" class="nav-link" href="#">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a ng-class="linkColor" class="nav-link" href="#">Company</a>
+                </li>
+                <li class="nav-item">
+                    <a ng-class="linkColor" class="nav-link" href="#">Help</a>
+                </li>
+                <li class="nav-item">
+                    <a ng-class="linkColor" class="nav-link" href="#">Account</a>
+                </li>
+            </ul>
+        </div>
+        <div ng-class="bgColorCount" class="shopping-cart float-right">
+            <span class="count">0</span>
+        </div>
+        <div ng-class="display" class="row col-12">
+            <nav class="navbar navbar-light col-12">
+                <form class="form-inline col-12">
+                    <input class=" icon-search form-control col-12" type="search" placeholder="Search" aria-label="Search">
+                </form>
+            </nav>
+            <ul class="nav flex-column text-center">
+                <li ng-repeat="type in productType" class="nav-item">
+                    <a class="nav-link" href="#">{{type}}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

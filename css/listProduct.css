@@ -1,12 +1,128 @@
-.wrap-product{
+.content{
+    width: 100%;
+    height: auto;
+    padding: 100px 2.2rem 0 2.2rem;
+}
+
+.content .wrap-product{
+    width: 100%;
+    /* margin: 0 auto; */
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
-.wrap-product .item {
-    width: 200px;
-    padding: 25px;
-    border: 1px solid #b6b6b6;
-    border-radius: 10px;
+
+.content .wrap-product .description{
+    position: relative;
+    width: 47.5%;
+    padding-top: 30%;
+}
+
+.content .wrap-product .description .layout{
+    text-align: left;
+}
+
+.content .wrap-product .description .layout p{
+    font-size: 2rem;
+    padding-right: 8rem;
+    line-height: 2.7rem;
+}
+
+.content .wrap-product .description .layout h3{
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem;
+}
+
+.content .wrap-product .item{
+    position: relative;
+    width: 22.5%;
+    padding-top: 33%;
+    margin-bottom: 2rem;
+}
+
+.content .wrap-product .item .layout, .description .layout{
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     text-align: center;
+}
+
+.content .wrap-product .item .layout img{
+    width: 100%;
+    height: 80%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 1rem;
+    outline: none !important;
+    border: none !important;
+}
+
+.content .wrap-product .item .layout img.second{
+    display: none;
+}
+
+.content .wrap-product .item .layout .shortInfo h3 {
+    font-size: 0.9rem !important;
+}
+.content .wrap-product .item .layout .shortInfo p {
+    font-size: 0.95rem;
+}
+
+.content .wrap-product .item .layout .infoSize{
+    display: none;
+}
+
+.content .wrap-product .item:hover .shortInfo{
+    display: none;
+}
+.content .wrap-product .item:hover .infoSize{
+    display: block;
+    animation: show 0.5s forwards;
+}
+.content .wrap-product .item:hover img.first{
+    display: none;
+}
+.content .wrap-product .item:hover img.second{
+    display: block;
+    animation: show 1.5s forwards;
+}
+
+.content .wrap-pagination{
+    width: 100%;
+    text-align: center;
+    display:  flex;
+    justify-content: center;
+}
+
+.wrap-pagination .pagination .button{
+    font-weight: 700;
+}
+
+.wrap-pagination .pagination li {
+    padding: 0.5rem;
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+.wrap-pagination .pagination .uniderLine:hover::after{
+    animation: moveUnderline 0.5s forwards;
+}
+
+.wrap-pagination .pagination .active {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.9);
+}
+@keyframes show{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

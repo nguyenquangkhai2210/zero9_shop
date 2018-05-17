@@ -1,6 +1,5 @@
-var app = angular.module('myApp', ['ngCookies']);
-
-app.factory('PagerService', PagerService)
+angular.module('listProduct', ['ngCookies', 'navBar'])
+    .factory('PagerService', PagerService)
     .controller('controllerListProduct', controllerListProduct)
 
 function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
@@ -81,17 +80,17 @@ function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
     // }
     $scope.submit = function () {
         var request;
-        for (var i = 0; i < $scope.products.length; i++) {
-            delete $scope.products[i].count;
+        for (var i = 0; i < vm.allProducts.length; i++) {
+            delete vm.allProducts[i].count;
         }
 
-        console.log($scope.products);
-        for (var i = 0; i < $scope.products.length; i++) {
+        console.log(vm.allProducts);
+        for (var i = 0; i < vm.allProducts.length; i++) {
             for (var j = 0; j < $scope.cart.length; j++)
-                if ($scope.products[i].id === $scope.cart[j].id) {
+                if (vm.allProducts[i].id === $scope.cart[j].id) {
                     repeat = true;
-                    $scope.products[i].quantity -= $scope.cart[j].count;
-                    request = $http.put("http://5ad6e99acd67c10014c73d9d.mockapi.io/product/" + $scope.products[i].id, $scope.products[i]);
+                    vm.allProducts[i].quantity -= $scope.cart[j].count;
+                    request = $http.put("http://5ad6e99acd67c10014c73d9d.mockapi.io/product/" + vm.allProducts[i].id, vm.allProducts[i]);
                 }
         }
         $cookies.remove("cart");
