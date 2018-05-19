@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
     </head>
     <body>
-        <div class="row">
+        <div class="">
             <nav class="navbar navbar-expand-lg navbar-light col-lg-12" style="background-color: #e3f2fd;">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">

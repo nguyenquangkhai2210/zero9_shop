@@ -30,7 +30,7 @@
     </servlet>
     <servlet>
         <servlet-name>ViewProduct</servlet-name>
-        <servlet-class>shop.servlet.ViewProduct</servlet-class>
+        <servlet-class>shop.servlet.ViewProductServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>

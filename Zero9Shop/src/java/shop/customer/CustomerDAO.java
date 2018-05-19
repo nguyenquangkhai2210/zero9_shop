@@ -6,6 +6,7 @@
 package shop.customer;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -94,6 +95,7 @@ public class CustomerDAO implements Serializable {
             stm.setString(2, username);
             stm.setString(3, password);
             stm.setString(4, email);
+            fullName = new String(fullName.getBytes(), Charset.forName("UTF-8"));
             stm.setString(5, fullName);
             stm.setString(6, phone);
             stm.setString(7, gender);

@@ -8,11 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.css">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
     </head>
 
     <body>
-        <div class="row col-lg-12 pr-0 mr-0">
+        <div class="col-lg-12  mr-0">
             <nav class="navbar navbar-expand-lg navbar-light col-lg-12" style="background-color: #e3f2fd;">
                 <button class="navbar-toggler col-lg-12" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -71,8 +73,8 @@
             <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
         </form>
         <div class="row">
-            <div class="col-lg-1 bg-light mr-0 ml-0 pl-0 d-none d-xl-block">
-                <div class="col-lg-12 ml-0" style="height: 53em;">
+            <div class="col-lg-1 bg-light ml-3 pl-0 pr-0 d-none d-xl-block">
+                <div class="col-lg-12 pr-0" style="height: 53em;">
                     <div class="list-group">
                         <form action="MainControllerServlet" method="POST">
                             <a href="#" class="list-group-item list-group-item-action list-group-item-light">Dashboard</a>
@@ -85,8 +87,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-11 ml-0 mr-0 mt-2 pl-2 pr-2">
-                <div class="row col-lg-12 table-responsive">
+            <div class="col-lg-10 ml-3 mr-0 pl-0 pr-0">
+                <div class="col-lg-12 table-responsive pl-0 pr-0">
                     <table class="table table-bordered table-hover text-center">
                         <thead class="thead-light">
                             <tr>

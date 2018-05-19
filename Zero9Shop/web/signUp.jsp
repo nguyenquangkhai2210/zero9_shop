@@ -57,8 +57,8 @@
                         <div class="form-group col-md-6">
                             <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
                             <br>
-                            <label class="radio-inline mr-2 mt-2"><input type="radio" name="chkGender" >Male</label>
-                            <label class="radio-inline ml-2 mt-2"><input type="radio" name="chkGender">Female</label>
+                            <label class="radio-inline mr-2 mt-2"><input type="radio" name="chkGender" value="Male" >Male</label>
+                            <label class="radio-inline ml-2 mt-2"><input type="radio" name="chkGender" value="Female">Female</label>
                         </div>
                     </div>
                     <div class="form-group">

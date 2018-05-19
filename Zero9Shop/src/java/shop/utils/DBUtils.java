@@ -23,6 +23,7 @@ public class DBUtils {
     public static Connection getConnection(String user, String password, String databaseName) throws ClassNotFoundException, SQLException {
         Class.forName(driver);
         Connection conn = DriverManager.getConnection(url + databaseName, user, password);
+
         return conn;
     }
 
@@ -37,7 +38,8 @@ public class DBUtils {
             conn.close();
         }
     }
-        public static void closeConnection(Connection conn, PreparedStatement stm) throws ClassNotFoundException, SQLException {
+
+    public static void closeConnection(Connection conn, PreparedStatement stm) throws ClassNotFoundException, SQLException {
         if (stm != null) {
             stm.close();
         }

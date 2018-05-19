@@ -71,15 +71,15 @@ public class EmployeeDAO implements Serializable {
         return result;
     }
 
-    public static boolean changePassword(String username, String oldPass, String newPass) throws ClassNotFoundException, SQLException {
+    public static boolean changePassword(String username, String oldPass, String newPass) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         Connection conn = null;
         PreparedStatement stm = null;
         try {
             conn = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
             String sql = "UPDATE tblEmployee SET EmpPassword = ? Where EmpPassword = ? AND EmpUsername = ?";
             stm = conn.prepareStatement(sql);
-            stm.setString(1, newPass);
-            stm.setString(2, oldPass);
+            stm.setString(1, EncryptionUtils.md5(newPass));
+            stm.setString(2, EncryptionUtils.md5(oldPass));
             stm.setString(3, username);
             int result = stm.executeUpdate();
             if (result > 0) {

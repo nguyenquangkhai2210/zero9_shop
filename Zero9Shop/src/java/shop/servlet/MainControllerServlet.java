@@ -34,29 +34,34 @@ public class MainControllerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         PrintWriter out = response.getWriter();
         try {
             String button = request.getParameter("btAction");
-            
+
             if (null == button) {
                 //
-            } else switch (button) {
-                case "Login":
-                    new LoginServlet().processRequest(request, response);
-                    break;
-                case "SignUp":
-                    new SignUpServlet().processRequest(request, response);
-                    break;
-                case "Logout":
-                    new LogoutServlet().processRequest(request, response);
-                    break;
-                case "Product":
-                    new ViewProduct().processRequest(request, response);
-                    break;
-                default:
-                    
-                    break;
+            } else {
+                switch (button) {
+                    case "Login":
+                        new LoginServlet().processRequest(request, response);
+                        break;
+                    case "SignUp":
+                        new SignUpServlet().processRequest(request, response);
+                        break;
+                    case "Logout":
+                        new LogoutServlet().processRequest(request, response);
+                        break;
+                    case "Product":
+                        new ViewProductServlet().processRequest(request, response);
+                        break;
+                    case "ChangePassword":
+                        new ChangePasswordServlet().processRequest(request, response);
+                        break;
+                    default:
+
+                        break;
+                }
             }
         } catch (Exception e) {
 

@@ -7,13 +7,16 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import shop.employee.EmployeeDAO;
 
 /**
@@ -21,6 +24,9 @@ import shop.employee.EmployeeDAO;
  * @author THANH HUNG
  */
 public class ChangePasswordServlet extends HttpServlet {
+
+    final static String loginPage = "login.jsp";
+    final static String productPage = "product.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,19 +40,25 @@ public class ChangePasswordServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String url;
         try {
-            String username = request.getParameter("txtUsername");
-            String oldPass = request.getParameter("txtPassword");
+            HttpSession session = request.getSession();
+            String username = session.getAttribute("username").toString();
+            String oldPass =  request.getParameter("txtPassword");
             String newPass = request.getParameter("txtNewPass");
             boolean result = EmployeeDAO.changePassword(username, oldPass, newPass);
             if (result) {
-                // true, change sucessfull
+                url = loginPage;
             } else {
-                // change fail
+                url = productPage;
             }
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(ChangePasswordServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();

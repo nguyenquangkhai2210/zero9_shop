@@ -24,7 +24,7 @@ import shop.product.ProductDTO;
  *
  * @author THANH HUNG
  */
-public class ViewProduct extends HttpServlet {
+public class ViewProductServlet extends HttpServlet {
 
     final static String productPage = "product.jsp";
 
@@ -47,9 +47,9 @@ public class ViewProduct extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher(productPage);
             rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewProduct.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ViewProduct.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

@@ -72,7 +72,7 @@ public class ProductDAO implements Serializable {
         return result;
     }
 
-    public List<ProductDTO> listProduct() throws ClassNotFoundException, SQLException {
+    public static List<ProductDTO> listProduct() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
