@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/home-page.css">
 
-    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="shortcut icon" href="">
 
     <script src="./lib/angular.min.js"></script>
     <script src="./lib/angular-router.min.js"></script>
@@ -24,7 +24,7 @@
 
 <body ng-app="listProduct">
     <navbar></navbar>
-    <div ng-controller="controllerListProduct as vm">
+    <div ng-controller="controllerListProduct as vm" ng-click="handleException()">
         <div class="content">
             <!-- items being paged -->
             <div class="wrap-product">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="item" ng-repeat="product in vm.products">
-                    <a class="layout">
+                    <a class="layout" ng-click="addItemToCart(product)">
                         <img class="first" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"
                         />
                         <img class="second" style="background-image: url('./img/desktop-2500x0-c-default.jpg')" />
@@ -94,6 +94,8 @@
     <script src="./js/listProduct.js"></script>
     <script src="./component/navbar/navbar.module.js"></script>
     <script src="./component/navbar/navbar.component.js"></script>
+    <script src="./shoppingCart.module.js"></script>
+    <script src="./shoppingCart.component.js"></script>
 </body>
 
 </html>

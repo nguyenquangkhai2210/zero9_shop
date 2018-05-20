@@ -1,6 +1,6 @@
 var navbarComponent = {
     templateUrl: './component/navbar/navbar.component.html',
-    controller: function ($scope, $rootScope, $timeout, $window) {
+    controller: function ($scope, $window, $cookies, $route) {
         $scope.productType = ['hat', 'shirt', 'pants', 'shoes', 'accessories'];
         $scope.productsData = [{
             id: 1,
@@ -82,6 +82,22 @@ var navbarComponent = {
                     flag = 0;
                 }
             }
+        }
+
+        $scope.cart = $cookies.getObject('cart');
+        $scope.count = 0;
+        try{
+            $scope.count = $cookies.getObject('cart').length;
+        } catch (error){
+            $scope.count = 0;
+        }
+        
+        $window.onclick = function(){
+            console.log($scope.count);
+            $scope.cart = $cookies.getObject('cart');
+            $scope.count = $scope.cart.length;
+            console.log($scope.cart.length);
+            $route.reload();
         }
     }
 }

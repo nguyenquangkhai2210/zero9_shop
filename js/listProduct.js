@@ -1,10 +1,12 @@
-angular.module('listProduct', ['ngCookies', 'navBar'])
+angular.module('listProduct', ['ngCookies', 'navBar', 'shoppingCart', 'ngRoute'])
     .factory('PagerService', PagerService)
     .controller('controllerListProduct', controllerListProduct)
 
 function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
     var vm = this;
-
+    $scope.handleException = function(){
+        return true;
+    }
     //get json
     $http.get("http://5ad6e99acd67c10014c73d9d.mockapi.io/product").then(function (response) {
         vm.allProducts = response.data;
