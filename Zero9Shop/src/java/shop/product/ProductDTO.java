@@ -20,7 +20,7 @@ public class ProductDTO implements Serializable {
     private String proDescription;
     private float proPrice;
     private int stock;
-    private String catefories;
+    private String catelories;
     private String createdTime;
     private boolean isActive;
     private int saleOff;
@@ -36,7 +36,7 @@ public class ProductDTO implements Serializable {
         this.isActive = isActive;
         this.saleOff = saleOff;
         this.reservedPoint = reservedPoint;
-        this.catefories = categories;
+        this.catelories = categories;
     }
 
     public ProductDTO(String proId, String proName, float proPrice, int stock, String createdTime, boolean isActive, int saleOff) {
@@ -55,19 +55,22 @@ public class ProductDTO implements Serializable {
         this.proDescription = proDescription;
         this.proPrice = proPrice;
         this.stock = stock;
-        this.catefories = categories;
+        this.catelories = categories;
         this.createdTime = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         this.isActive = true;
         this.saleOff = 0;
         this.reservedPoint = (int) proPrice * 10 / 100;
     }
+
+    public ProductDTO() {
+    }
     
-    public void setCatefories(String catefories) {
-        this.catefories = catefories;
+    public void setCatelories(String catelories) {
+        this.catelories = catelories;
     }
 
-    public String getCatefories() {
-        return catefories;
+    public String getCatelories() {
+        return catelories;
     }
 
     public String getProId() {
@@ -144,7 +147,7 @@ public class ProductDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "ProductDTO{" + "proId=" + proId + ", proName=" + proName + ", proDescription=" + proDescription + ", proPrice=" + proPrice + ", stock=" + stock + ", catefories=" + catefories + ", createdTime=" + createdTime + ", isActive=" + isActive + ", saleOff=" + saleOff + ", reservedPoint=" + reservedPoint + '}';
+        return "ProductDTO{" + "proId=" + proId + ", proName=" + proName + ", proDescription=" + proDescription + ", proPrice=" + proPrice + ", stock=" + stock + ", catefories=" + catelories + ", createdTime=" + createdTime + ", isActive=" + isActive + ", saleOff=" + saleOff + ", reservedPoint=" + reservedPoint + '}';
     }
 
 }

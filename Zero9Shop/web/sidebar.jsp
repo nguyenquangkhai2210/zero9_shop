@@ -7,30 +7,72 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="css/paper-dashboard.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/themify-icons.css">
-        <link rel="stylesheet" href="css/animate.min.css">
-    </head>
     <body>
-        <div class="sidebar" data-background-color="white" data-active-color="danger">
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        Creative Tim
-                    </a>
+        <div class="nav flex-column col-xl-2 border-right pr-0" style="height:100vh; overflow: hidden;">
+            <div class="align-self-center mt-3">
+                <h4>
+                    <a href="" class="navbar-brand">ZERO_9 SHOP</a>
+                </h4>
+            </div>
+            <div class="ml-3">
+                <hr size="1">
+            </div>
+            <div class="nav flex-column">
+                <div class="align-self-center">
+                    <img src="svg/admin.svg" alt="" class="rounded-circle border border-secondary mb-3" style="width: 100px ; height: 100px;">
+                    <br>
+                    <i class="ti-user ml-2">
+                        HungPT
+                    </i>
                 </div>
-                <div class="list-group collapse navbar-collapse col-lg-12" id="navbarSupportedContent">
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light nav-item">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light ">Order</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light">Customer</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light ">Employee</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light active">Product</a>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light">Promotion</a>
+                <div class="ml-3">
+                    <hr size="1">
                 </div>
+                <ul class="nav flex-column pl-3">
+                    <li class="nav-item">
+                        <h5>
+                            <a class="nav-link" href="#">
+                                <i class="ti-gift mr-3"></i>
+                                Order</a>
+                        </h5>
+                    </li>
+                    <li class="nav-item">
+                        <h5>
+                            <a class="nav-link" href="#">
+                                <i class="ti-save-alt mr-3"></i>
+                                Product</a>
+                        </h5>
+                    </li>
+                    <li class="nav-item">
+                        <h5>
+                            <a class="nav-link" href="#">
+                                <i class="ti-user mr-3"></i>
+                                Customer</a>
+                        </h5>
+                    </li>
+                    <li class="nav-item">
+                        <h5>
+                            <a class="nav-link" href="#">
+                                <i class="ti-stamp mr-3"></i>
+                                Employee</a>
+                        </h5>
+                    </li>
+                    <li class="nav-item">
+                        <h5>
+                            <a class="nav-link" href="#">
+                                <i class="ti-heart mr-3"></i>
+                                Promotion</a>
+                        </h5>
+                    </li>
+                    <li class="nav-item align-self-stretch">
+                        <h5>
+                            <a class="nav-link" href="#">
+                                <i class="ti-help-alt mr-3"></i>
+                                Version 1.0.4</a>
+                        </h5>
+                    </li>
+                </ul>
             </div>
         </div>
-        <script src="js/paper-dashboard.js"></script>
     </body>
 </html>

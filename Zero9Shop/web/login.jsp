@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/bootstrap.css">
     </head>
     <body>
-        <div class="">
+        <div>
             <nav class="navbar navbar-expand-lg navbar-light col-lg-12" style="background-color: #e3f2fd;">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
@@ -53,7 +53,6 @@
                         <button type="button" class="btn btn-danger mr-2">Forgot password?</button>
                         <a href="signUp.jsp" class="btn btn-success">Sign Up</a>
                     </div>
-
                 </div>
             </div>
     </body>

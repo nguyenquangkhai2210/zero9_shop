@@ -72,21 +72,20 @@ public class ProductDAO implements Serializable {
         return result;
     }
 
-    public static List<ProductDTO> listProduct() throws ClassNotFoundException, SQLException {
+    public List<ProductDTO> listProduct() throws ClassNotFoundException, SQLException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         List<ProductDTO> list = new ArrayList<>();
         try {
             conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT ProID, ProName, ProPrice, Stock, CreatedTime, isActive, SaleOff FROM tblProduct";
+            String sql = "SELECT TOP 15 ProID, ProName, ProPrice, Stock, CreatedTime, isActive, SaleOff FROM tblProduct";
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
-
             while (rs.next()) {
                 String id = rs.getString("ProID");
                 String name = rs.getString("ProName");
-                int price = rs.getInt("ProPrice");
+                float price = rs.getInt("ProPrice");
                 int stock = rs.getInt("Stock");
                 Date createTime = rs.getDate("CreatedTime");
                 String createTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(createTime);
@@ -99,6 +98,37 @@ public class ProductDAO implements Serializable {
             DBUtils.closeConnection(conn, stm, rs);
         }
         return list;
+    }
+
+    public ProductDTO getDetailProduct(String idPro) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ProductDTO result = null;
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT * FROM tblProduct WHERE ProID = ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, idPro);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("ProID");
+                String name = rs.getString("ProName");
+                String des = rs.getString("ProDescription");
+                float price = rs.getInt("ProPrice");
+                int stock = rs.getInt("Stock");
+                String cate = rs.getString("Categories");
+                boolean isActive = rs.getBoolean("isActive");
+                Date createTime = rs.getDate("CreatedTime");
+                String createTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(createTime);
+                int saleOff = rs.getInt("SaleOff");
+                int reservedPoint = rs.getInt("ReservedPoint");
+                result = new ProductDTO(id, name, des, price, stock, cate, createTimeFormat, isActive, saleOff, reservedPoint);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return result;
     }
 
 }

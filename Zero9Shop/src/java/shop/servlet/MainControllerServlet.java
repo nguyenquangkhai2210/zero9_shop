@@ -38,7 +38,6 @@ public class MainControllerServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String button = request.getParameter("btAction");
-
             if (null == button) {
                 //
             } else {
@@ -58,8 +57,10 @@ public class MainControllerServlet extends HttpServlet {
                     case "ChangePassword":
                         new ChangePasswordServlet().processRequest(request, response);
                         break;
+                    case "EditProduct":
+                        new EditProductServlet().processRequest(request, response);
+                        break;
                     default:
-
                         break;
                 }
             }

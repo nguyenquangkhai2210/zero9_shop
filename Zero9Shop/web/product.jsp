@@ -15,38 +15,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Product Page</title>
         <link rel="stylesheet" href="css/bootstrap.css">
-
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/paper-dashboard.css">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
-        <%@include file="header.jsp" %>
-        <%--<%@include file="sidebar.jsp" %>--%>
 
-        <form class="d-flex justify-content-end mt-2 mb-2 pr-3">
-            <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search ID" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
-        </form>
         <div class="row mr-0 ml-0">
-            <div class="col-lg-1 bg-light mr-0 ml-0 pl-0 pr-0 d-none d-xl-block">
-                <div class="col-lg-12 ml-0 mr-0" style="height: 53em;">
-                    <div class="list-group collapse navbar-collapse col-lg-12" id="navbarSupportedContent">
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light nav-item">Dashboard</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light ">Order</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">Customer</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light ">Employee</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light active">Product</a>
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">Promotion</a>
+            <%@include file="sidebar.jsp" %>
+            <div class="col-lg-10 ml-0 mr-0 pl-0 pr-0">
+                <%@include file="header.jsp" %>
 
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-lg-11 ml-0 mr-0 pl-0 pr-3">
-                <div class="row col-lg-12 mr-0 ml-0 pl-0 pr-0 table-responsive">
+                <form class="d-flex justify-content-end mt-2 mb-2 pr-3">
+                    <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
+                </form>
+                <div class="row col-lg-12 mr-0 ml-0 pl-2 pr-2 table-responsive">
                     <div class="row col-lg-12 mr-0 ml-0 pl-0 pr-0 table-responsive">
-                        <%                            List<ProductDTO> list = (List<ProductDTO>) request.getAttribute("ProductList");
+                        <%   List<ProductDTO> list = (List<ProductDTO>) request.getAttribute("ProductList");
                         %>
                         <table class="table table-bordered table-hover text-center">
+
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">#</th>
@@ -70,11 +59,11 @@
                                     <th scope="row">
                                         <%
                                             out.print(x.getProId());
+
                                         %>
                                     </th>
                                     <td>
-                                        <%
-                                            out.print(x.getProName());
+                                        <%                                            out.print(x.getProName());
                                         %>
                                     </td>
                                     <td>
@@ -120,21 +109,14 @@
                                                                             Decription (chua lam)
                                                                         </td>-->
                                     <td>
-                                        <span class="badge badge-info">Edit</span>
 
-                                        <%
-                                            if (x.isActive()) {
-                                        %> 
-                                        <span class="badge badge-warning">Deactive</span>
 
-                                        <%
-                                        } else {
-                                        %>
-                                        <span class="badge badge-success">Active</span>
 
-                                        <%
-                                            }
-                                        %>
+                                        <form action="EditProductServlet" method="POST">
+                                            <button class="btn btn-info btn-sm" value="<%= x.getProId() %>"
+                                                    type="submit" name="idProduct">
+                                                Edit</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <%}
@@ -145,11 +127,11 @@
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
     </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </html>

@@ -32,6 +32,10 @@
         <servlet-name>ViewProduct</servlet-name>
         <servlet-class>shop.servlet.ViewProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>shop.servlet.EditProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
