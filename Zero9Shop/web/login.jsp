@@ -12,22 +12,19 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/paper-dashboard.css">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light col-lg-12" style="background-color: #e3f2fd;">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="#">Zero9 Shop</a>
-                    </li>
-                </ul>
-            </nav>
+            <%@include file="header.jsp" %>
         </div>
         <div class="col-lg-12 d-flex justify-content-center align-items-center" style="height: 53em;">
             <div class="card bg-light col-lg-4">
                 <div class="card-body">
                     <div class="card-header text-center bg-light">
-                        <h1 class="font-weight-light">Login website</h1>
+                        <h3>Login to website</h3>
                     </div>
                     <form class="px-4 py-3" method="POST" action="MainControllerServlet">
                         <div class="form-group">

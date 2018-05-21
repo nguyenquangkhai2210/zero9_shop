@@ -89,10 +89,10 @@
                                         <%= x.getReservedPoint()%> Point
                                     </td>
                                     <td>
-                                        <form action="EditProductServlet" method="POST">
+                                        <form action="ViewDetailProductServlet" method="POST">
                                             <button class="btn btn-info btn-sm" value="<%= x.getProId()%>"
                                                     type="submit" name="idProduct">
-                                                Edit</button>
+                                                Detail</button>
                                         </form>
                                     </td>
                                 </tr>

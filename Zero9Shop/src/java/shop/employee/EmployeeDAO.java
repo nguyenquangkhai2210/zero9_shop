@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import shop.customer.CustomerDTO;
 import shop.utils.DBUtils;
 import shop.utils.EncryptionUtils;
@@ -149,5 +150,33 @@ public class EmployeeDAO implements Serializable {
         }
         return employee;
     }
-
+   public List<EmployeeDTO> listEmployee() throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<EmployeeDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT TOP 12 * FROM tblEmployee";
+            stm = conn.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String empID = rs.getString("EmpID");
+                String empUsername = rs.getString("EmpUsername");
+                String empName = rs.getString("EmpName");
+                String empPhone = rs.getString("EmpPhone");
+                String empMail = rs.getString("EmpMail");
+                String empAddress = rs.getString("EmpAddress");
+                String empGender = rs.getString("EmpGender");
+                String empBirthdate = rs.getString("EmpBirthdate");
+                String startDate = rs.getString("StartDate");
+                String endDate = rs.getString("EndDate");
+                EmployeeDTO tmp = new EmployeeDTO(empID, empUsername, empName, empPhone, empMail, empAddress, empGender, empBirthdate, startDate, endDate);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
 }

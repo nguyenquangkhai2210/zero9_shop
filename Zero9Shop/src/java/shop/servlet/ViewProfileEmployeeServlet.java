@@ -11,12 +11,14 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import shop.employee.EmployeeDAO;
 import shop.employee.EmployeeDTO;
+import static shop.servlet.ViewProductServlet.productPage;
 
 /**
  *
@@ -24,9 +26,10 @@ import shop.employee.EmployeeDTO;
  */
 public class ViewProfileEmployeeServlet extends HttpServlet {
 
+    final static String employeeProfilePage = "employeeProfile.jsp";
+
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -37,12 +40,14 @@ public class ViewProfileEmployeeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String idCus = request.getParameter("idCus");
-            EmployeeDTO employee = EmployeeDAO.getEmployeeProfile(idCus);
-            
+            String idEmp = request.getParameter("idEmp");
+            EmployeeDTO employee = EmployeeDAO.getEmployeeProfile(idEmp);
+            String url = employeeProfilePage;
             if (employee != null) {
                 //process
             }
+            RequestDispatcher rd = request.getRequestDispatcher(productPage);
+            rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ViewProfileEmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

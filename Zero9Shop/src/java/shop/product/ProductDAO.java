@@ -79,7 +79,7 @@ public class ProductDAO implements Serializable {
         List<ProductDTO> list = new ArrayList<>();
         try {
             conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT TOP 12 * FROM tblProduct";
+            String sql = "SELECT  TOP 12 * FROM tblProduct";
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {

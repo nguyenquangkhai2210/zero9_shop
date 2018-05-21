@@ -1,5 +1,5 @@
 <%-- 
-    Document   : product
+    Document   : promotion
     Created on : May 17, 2018, 11:36:48 PM
     Author     : THANH HUNG
 --%>
@@ -25,11 +25,11 @@
             List<VoucherDTO> list = (List<VoucherDTO>) request.getAttribute("VoucherList");
             int i = 0;
         %>
+       
         <div class="row mr-0 ml-0">
             <%@include file="sidebar.jsp" %>
             <div class="col-lg-10 col-md-7">
-                <%@include file="header.jsp" %>
-
+             <%@include file="header.jsp" %>
                 <form class="d-flex justify-content-end mt-2 mb-2 pr-3">
                     <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
@@ -52,14 +52,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <% for (VoucherDTO  x : list) {
+                                <% for (VoucherDTO x : list) {
                                 %>
                                 <tr>        
                                     <th scope="row">
-                                        <%= i++ %>
+                                        <%= i++%>
                                     </th>
                                     <td class="text-left">
-                                        <%=x.getCode() %>
+                                        <%=x.getCode()%>
                                     </td>
                                     <td>
                                         <%
@@ -82,7 +82,7 @@
                                         %>
                                     </td>
                                     <td>
-                                        <%= x.getType() %>
+                                        <%= x.getType()%>
                                     </td>
                                     <td>
                                         <form action="EditProductServlet" method="POST">

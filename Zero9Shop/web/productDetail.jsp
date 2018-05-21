@@ -1,5 +1,5 @@
 <%-- 
-    Document   : productDetail
+    Document   : promotion
     Created on : May 20, 2018, 9:09:48 PM
     Author     : THANH HUNG
 --%>
@@ -25,7 +25,7 @@
                 <%@include file="header.jsp" %>
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Edit Product</h4>
+                        <h4 class="title">Edit Product - <%= x.getProName() %></h4>
                     </div>
                     <div class="content">
                         <form>

@@ -18,7 +18,7 @@
                 <hr size="1">
             </div>
             <div class="nav flex-column">
-                <div class="align-self-center">
+                <div class="align-self-center pl-3">
                     <img src="svg/admin.svg" alt="" class="rounded-circle border border-secondary mb-3 ml-4" style="width: 100px ; height: 100px;">
                     <br>
                     <div class="d-flex justify-content-center mt-2 mb-2 ">

@@ -69,9 +69,7 @@ public class MainControllerServlet extends HttpServlet {
                     case "ChangePassword":
                         new ChangePasswordServlet().processRequest(request, response);
                         break;
-                    case "EditProduct":
-                        new ViewProfileProductServlet().processRequest(request, response);
-                        break;
+                   
                     default:
                         break;
                 }

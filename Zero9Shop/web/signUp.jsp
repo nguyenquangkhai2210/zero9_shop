@@ -13,16 +13,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/themify-icons.css">
+        <link rel="stylesheet" href="css/paper-dashboard.css">
+        <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
         <div class="col-lg-12">
-            <nav class="navbar navbar-expand-lg navbar-light col-lg-12" style="background-color: #e3f2fd;">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ml-2">
-                        <a class="navbar-brand" href="#">Zero9 Shop</a>
-                    </li>
-                </ul>
-            </nav>
+            <%@include file="header.jsp" %>
         </div>
         <div class="d-flex justify-content-center align-items-center col-lg-12" style="height: 53em;">
             <div class="card bg-light col-lg-4">

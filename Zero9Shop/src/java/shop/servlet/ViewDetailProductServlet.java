@@ -17,13 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import shop.product.ProductDAO;
 import shop.product.ProductDTO;
-import static shop.servlet.ChangePasswordServlet.productPage;
 
 /**
  *
  * @author THANH HUNG
  */
-public class ViewProfileProductServlet extends HttpServlet {
+public class ViewDetailProductServlet extends HttpServlet {
 
     final static String productDetailPage = "productDetail.jsp";
 
@@ -47,7 +46,7 @@ public class ViewProfileProductServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher(productDetailPage);
             rd.forward(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(ViewProfileProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewDetailProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

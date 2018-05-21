@@ -81,7 +81,7 @@
                                         <form action="ViewProfileCustomerServlet" method="POST">
                                             <button class="btn btn-info btn-sm" value="<%= x.getCusId()%>"
                                                     type="submit" name="idCus">
-                                                Edit</button>
+                                                Profile</button>
                                         </form>
                                     </td>
                                 </tr>

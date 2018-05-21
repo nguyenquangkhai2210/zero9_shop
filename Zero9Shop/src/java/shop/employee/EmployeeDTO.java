@@ -57,6 +57,19 @@ public class EmployeeDTO implements Serializable{
         this.roleId = RoleId;
     }
 
+    public EmployeeDTO(String empId, String empUsername, String empName, String EmpPhone, String empMail, String emAddress, String empGender, String empBirthdate, String startDate, String endDate) {
+        this.empId = empId;
+        this.empUsername = empUsername;
+        this.empName = empName;
+        this.EmpPhone = EmpPhone;
+        this.empMail = empMail;
+        this.emAddress = emAddress;
+        this.empGender = empGender;
+        this.empBirthdate = empBirthdate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+    
     public String getEmpId() {
         return empId;
     }
