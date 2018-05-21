@@ -117,37 +117,40 @@ public class CustomerDAO implements Serializable {
 
     /**
      * This function is used to get profile of a customer who has
-     * <i>username<i>.
+     * <i>CusID<i>.
      * <br>
-     * Username of customer is unique key so you can use to find customer
+     * CusID of customer is unique key so you can use to find customer
      *
-     * @param username: username in the database
+     * @param cusID: ID in the database
      * @return CustomerDTO with all information except password is set to null
      * @throws ClassNotFoundException
      * @throws SQLException
      * @throws NoSuchAlgorithmException
      */
-    public static CustomerDTO getCustomerProfile(String username) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+    public static CustomerDTO getCustomerProfile(String cusID) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         Connection c = null;
         PreparedStatement psm = null;
         CustomerDTO customer = null;
         ResultSet rs = null;
         try {
             c = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "Select * from tblCustomer where CusUsername = ?";
+            String sql = "Select * from tblCustomer WHERE CusID = ?";
             psm = c.prepareStatement(sql);
-            psm.setString(1, username);
+            psm.setString(1, cusID);
             rs = psm.executeQuery();
-            String id = rs.getString("CusID");
-            String cusName = rs.getString("CusName");
-            String cusPhone = rs.getString("CusPhone");
-            String cusMail = rs.getString("CusMail");
-            String cusAddress = rs.getString("CusAddress");
-            String cusGender = rs.getString("CusGender");
-            String cusBirthdate = rs.getString("CusBirthdate");
-            String startDate = rs.getString("StartDate");
-            int point = rs.getInt("Point");
-            customer = new CustomerDTO(id, username, "", cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate, startDate, point);
+            while (rs.next()) {
+                String cusUsername = rs.getString("CusUsername");
+                String cusName = rs.getString("CusName");
+                String cusPhone = rs.getString("CusPhone");
+                String cusMail = rs.getString("CusMail");
+                String cusAddress = rs.getString("CusAddress");
+                String cusGender = rs.getString("CusGender");
+                String cusBirthdate = rs.getString("CusBirthdate");
+                String startDate = rs.getString("StartDate");
+                int point = rs.getInt("Point");
+                customer = new CustomerDTO(cusID, cusUsername, cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate, startDate, point);
+            }
+
         } finally {
             DBUtils.closeConnection(c, psm, rs);
         }
@@ -165,7 +168,7 @@ public class CustomerDAO implements Serializable {
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {
-                String cusID= rs.getString("CusID");
+                String cusID = rs.getString("CusID");
                 String cusUsername = rs.getString("CusUsername");
                 String cusName = rs.getString("CusName");
                 String cusPhone = rs.getString("CusPhone");

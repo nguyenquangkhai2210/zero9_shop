@@ -101,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd">Update Product</button>
                             </div>
                             <div class="clearfix"></div>
                         </form>

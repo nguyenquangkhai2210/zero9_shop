@@ -11,6 +11,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +25,10 @@ import shop.customer.CustomerDAO;
  */
 public class ViewProfileCustomerServlet extends HttpServlet {
 
+    final static String customerProfile = "customerProfile.jsp";
+
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -38,12 +40,15 @@ public class ViewProfileCustomerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         CustomerDTO customer = null;
+        String url = customerProfile;
         try {
-            String username = "";
-            customer = CustomerDAO.getCustomerProfile(username);
+            String idCus = request.getParameter("idCus");
+                customer = CustomerDAO.getCustomerProfile(idCus);
             if (customer != null) {
-                //process
-            } 
+                request.setAttribute("customerProfile", customer);
+            }
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -51,7 +56,7 @@ public class ViewProfileCustomerServlet extends HttpServlet {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-
+            out.close();
         }
 
     }

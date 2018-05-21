@@ -22,14 +22,13 @@ public class VoucherDTO implements Serializable{
     private String type;
     private String cusId;
 
-    public VoucherDTO(String code, int saleOff, boolean isActive, String endedTime, String type, String cusId) {
+    public VoucherDTO(String code, int saleOff, boolean isActive, String createdTime, String endedTime, String type) {
         this.code = code;
         this.saleOff = saleOff;
         this.isActive = isActive;
-        this.createdTime = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        this.createdTime = createdTime;
         this.endedTime = endedTime;
         this.type = type;
-        this.cusId = cusId;
     }
 
     public VoucherDTO(String code, int saleOff, boolean isActive, String createdTime, String endedTime, String type, String cusId) {
@@ -41,6 +40,8 @@ public class VoucherDTO implements Serializable{
         this.type = type;
         this.cusId = cusId;
     }
+
+    
     
     public String getCode() {
         return code;

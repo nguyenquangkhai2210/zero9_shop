@@ -11,7 +11,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import shop.product.ProductDTO;
+import shop.utils.DBUtils;
 
 /**
  *
@@ -57,7 +62,7 @@ public class VoucherDAO implements Serializable {
             psm = c.prepareStatement(query);
             result = psm.executeUpdate();
         } finally {
-            
+
             if (psm != null) {
                 psm.close();
             }
@@ -65,4 +70,51 @@ public class VoucherDAO implements Serializable {
         return result;
     }
 
+    public List<VoucherDTO> listVoucher() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<VoucherDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT TOP 12 * FROM tblVoucher";
+            stm = conn.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String code = rs.getString("Code");
+                int saleOff = rs.getInt("SaleOff");
+                boolean isActive = rs.getBoolean("isActive");
+                Date time = rs.getDate("CreatedTime");
+                String createTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(time);
+                time = rs.getDate("EndedTime");
+                String endedTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(time);
+                String type = rs.getString("Type");
+                VoucherDTO tmp = new VoucherDTO(code, saleOff, isActive, createTimeFormat, endedTimeFormat, type);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
+
+    public VoucherDTO getDetailProduct(String idVoucher) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        VoucherDTO result = null;
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, idVoucher);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return result;
+    }
 }

@@ -33,7 +33,7 @@
                     <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
                 </form>
-                <div class="card">
+                <div class="card mt-4">
                     <div class="header">
                         <h4 class="title">Customer</h4>
                     </div>
@@ -78,9 +78,9 @@
                                     </td>
 
                                     <td>
-                                        <form action="EditProductServlet" method="POST">
+                                        <form action="ViewProfileCustomerServlet" method="POST">
                                             <button class="btn btn-info btn-sm" value="<%= x.getCusId()%>"
-                                                    type="submit" name="idProduct">
+                                                    type="submit" name="idCus">
                                                 Edit</button>
                                         </form>
                                     </td>

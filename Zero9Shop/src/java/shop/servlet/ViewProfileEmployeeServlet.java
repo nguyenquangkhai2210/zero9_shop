@@ -37,8 +37,9 @@ public class ViewProfileEmployeeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String username = "";
-            EmployeeDTO employee = EmployeeDAO.getEmployeeProfile(username);
+            String idCus = request.getParameter("idCus");
+            EmployeeDTO employee = EmployeeDAO.getEmployeeProfile(idCus);
+            
             if (employee != null) {
                 //process
             }

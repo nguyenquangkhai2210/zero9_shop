@@ -4,6 +4,7 @@
     Author     : THANH HUNG
 --%>
 
+<%@page import="shop.voucher.VoucherDTO"%>
 <%@page import="shop.product.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,7 +21,10 @@
         <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
-
+        <%
+            List<VoucherDTO> list = (List<VoucherDTO>) request.getAttribute("VoucherList");
+            int i = 0;
+        %>
         <div class="row mr-0 ml-0">
             <%@include file="sidebar.jsp" %>
             <div class="col-lg-10 col-md-7">
@@ -30,12 +34,68 @@
                     <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
                 </form>
-                <div class="card">
+                <div class="card mt-4">
                     <div class="header">
                         <h4 class="title">Promotion</h4>
                     </div>
                     <div class="row col-lg-12 mr-0 ml-0 pl-2 pr-2 pb-0 table-responsive content">
-                        //content will insert here
+                        <table class="table table-bordered table-hover text-center">
+
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Code</th>
+                                    <th scope="col">Sale off</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (VoucherDTO  x : list) {
+                                %>
+                                <tr>        
+                                    <th scope="row">
+                                        <%= i++ %>
+                                    </th>
+                                    <td class="text-left">
+                                        <%=x.getCode() %>
+                                    </td>
+                                    <td>
+                                        <%
+                                            out.print(x.getSaleOff());
+                                        %>
+                                        %
+                                    </td>
+                                    <td>
+                                        <%
+                                            if (x.isActive()) {
+                                        %> 
+
+                                        <span class="badge badge-success">Active</span>
+                                        <%
+                                        } else {
+                                        %>
+                                        <span class="badge badge-warning">Deactive</span>
+                                        <%
+                                            }
+                                        %>
+                                    </td>
+                                    <td>
+                                        <%= x.getType() %>
+                                    </td>
+                                    <td>
+                                        <form action="EditProductServlet" method="POST">
+                                            <button class="btn btn-info btn-sm" value="<%= x%>"
+                                                    type="submit" name="idProduct">
+                                                Edit</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <%}
+                                %> 
+                            </tbody>
+                        </table>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
