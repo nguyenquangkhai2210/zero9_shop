@@ -54,11 +54,23 @@ public class MainControllerServlet extends HttpServlet {
                     case "Product":
                         new ViewProductServlet().processRequest(request, response);
                         break;
+                    case "Customer":
+                        new ViewCustomerServlet().processRequest(request, response);
+                        break;
+                    case "Employee":
+                        new ViewEmployeeServlet().processRequest(request, response);
+                        break;
+                    case "Order":
+                        new ViewOrderServlet().processRequest(request, response);
+                        break;
+                    case "Promotion":
+                        new ViewPromotionServlet().processRequest(request, response);
+                        break;
                     case "ChangePassword":
                         new ChangePasswordServlet().processRequest(request, response);
                         break;
                     case "EditProduct":
-                        new EditProductServlet().processRequest(request, response);
+                        new ViewProfileProductServlet().processRequest(request, response);
                         break;
                     default:
                         break;

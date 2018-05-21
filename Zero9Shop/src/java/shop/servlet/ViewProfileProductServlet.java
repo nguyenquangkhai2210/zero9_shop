@@ -23,7 +23,7 @@ import static shop.servlet.ChangePasswordServlet.productPage;
  *
  * @author THANH HUNG
  */
-public class EditProductServlet extends HttpServlet {
+public class ViewProfileProductServlet extends HttpServlet {
 
     final static String productDetailPage = "productDetail.jsp";
 
@@ -47,7 +47,7 @@ public class EditProductServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher(productDetailPage);
             rd.forward(request, response);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(EditProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ViewProfileProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

@@ -12,10 +12,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import shop.product.ProductDTO;
 import shop.utils.DBUtils;
 
 /**
@@ -151,4 +154,33 @@ public class CustomerDAO implements Serializable {
         return customer;
     }
 
+    public List<CustomerDTO> listCustomer() throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<CustomerDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT TOP 12 * FROM tblCustomer";
+            stm = conn.prepareStatement(sql);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String cusID= rs.getString("CusID");
+                String cusUsername = rs.getString("CusUsername");
+                String cusName = rs.getString("CusName");
+                String cusPhone = rs.getString("CusPhone");
+                String cusMail = rs.getString("CusMail");
+                String cusAddress = rs.getString("CusAddress");
+                String cusGender = rs.getString("CusGender");
+                String cusBirthdate = rs.getString("CusBirthdate");
+                String startDate = rs.getString("StartDate");
+                int point = rs.getInt("Point");
+                CustomerDTO tmp = new CustomerDTO(cusID, cusUsername, cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate, startDate, point);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
 }

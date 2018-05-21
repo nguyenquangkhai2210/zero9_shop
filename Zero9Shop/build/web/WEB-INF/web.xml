@@ -34,7 +34,23 @@
     </servlet>
     <servlet>
         <servlet-name>EditProductServlet</servlet-name>
-        <servlet-class>shop.servlet.EditProductServlet</servlet-class>
+        <servlet-class>shop.servlet.ViewProfileProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCustomerServlet</servlet-name>
+        <servlet-class>shop.servlet.ViewCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderServlet</servlet-name>
+        <servlet-class>shop.servlet.ViewOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewEmployeeServlet</servlet-name>
+        <servlet-class>shop.servlet.ViewEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewPromotionServlet</servlet-name>
+        <servlet-class>shop.servlet.ViewPromotionServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
@@ -71,6 +87,22 @@
     <servlet-mapping>
         <servlet-name>EditProductServlet</servlet-name>
         <url-pattern>/EditProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCustomerServlet</servlet-name>
+        <url-pattern>/ViewCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderServlet</servlet-name>
+        <url-pattern>/ViewOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewEmployeeServlet</servlet-name>
+        <url-pattern>/ViewEmployeeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPromotionServlet</servlet-name>
+        <url-pattern>/ViewPromotionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

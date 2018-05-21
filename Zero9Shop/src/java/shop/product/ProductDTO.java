@@ -61,7 +61,7 @@ public class ProductDTO implements Serializable {
         this.saleOff = 0;
         this.reservedPoint = (int) proPrice * 10 / 100;
     }
-
+    
     public ProductDTO() {
     }
     

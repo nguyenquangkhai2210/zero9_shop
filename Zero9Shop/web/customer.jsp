@@ -4,6 +4,7 @@
     Author     : THANH HUNG
 --%>
 
+<%@page import="shop.customer.CustomerDTO"%>
 <%@page import="shop.product.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,14 +14,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Product Page</title>
+        <title>Customer Page</title>
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/themify-icons.css">
         <link rel="stylesheet" href="css/paper-dashboard.css">
         <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
-
+        <%
+            List<CustomerDTO> list = (List<CustomerDTO>) request.getAttribute("CustomerList");
+        %>
         <div class="row mr-0 ml-0">
             <%@include file="sidebar.jsp" %>
             <div class="col-lg-10 col-md-7">
@@ -32,65 +35,51 @@
                 </form>
                 <div class="card">
                     <div class="header">
-                        <h4 class="title">Product</h4>
+                        <h4 class="title">Customer</h4>
                     </div>
                     <div class="row col-lg-12 mr-0 ml-0 pl-2 pr-2 pb-0 table-responsive content">
-                        <%   List<ProductDTO> list = (List<ProductDTO>) request.getAttribute("ProductList");
-                        %>
                         <table class="table table-bordered table-hover text-center">
-
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">Username</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Stock</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Sale off</th>
-                                    <th scope="col">Reserved Point</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Gender</th>
+                                    <th scope="col">Point</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <%
-                                    for (ProductDTO x : list) {
+                                <%for (CustomerDTO x : list) {
                                 %>
                                 <tr>        
                                     <th scope="row">
-                                        <%=x.getProId()%>
+                                        <%= x.getCusId() %>
                                     </th>
                                     <td class="text-left">
-                                        <%=x.getProName()%>
+                                        <%=x.getCusUsername()%>
                                     </td>
-                                    <td>
-                                        <%=x.getStock()%>
+                                    <td class="text-left">
+                                        <%=x.getCusName()%>
                                     </td>
-                                    <td>
-                                        <%
-                                            if (x.isActive()) {
-                                        %> 
+                                    <td class="text-left">
 
-                                        <span class="badge badge-success">Active</span>
-                                        <%
-                                        } else {
-                                        %>
-                                        <span class="badge badge-warning">Deactive</span>
-                                        <%
-                                            }
-                                        %>
+                                        <%= x.getCusMail()%>
+
                                     </td>
                                     <td>
-                                        <%
-                                            out.print(x.getSaleOff());
-                                        %>
-                                        %
+                                        <%= x.getCusGender()%>
+
                                     </td>
                                     <td>
-                                        <%= x.getReservedPoint()%> Point
+                                        <%= x.getPoint()%>
                                     </td>
+
                                     <td>
                                         <form action="EditProductServlet" method="POST">
-                                            <button class="btn btn-info btn-sm" value="<%= x.getProId()%>"
+                                            <button class="btn btn-info btn-sm" value="<%= x.getCusId()%>"
                                                     type="submit" name="idProduct">
                                                 Edit</button>
                                         </form>

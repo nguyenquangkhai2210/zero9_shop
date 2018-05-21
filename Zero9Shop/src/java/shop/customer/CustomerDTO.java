@@ -57,6 +57,21 @@ public class CustomerDTO implements Serializable{
         this.Point = 0;
     }
 
+    public CustomerDTO(String cusId, String cusUsername, String cusName, String cusPhone, String cusMail, String cusAddress, String cusGender, String cusBirthdate, String startDate, int Point) {
+        this.cusId = cusId;
+        this.cusUsername = cusUsername;
+        this.cusName = cusName;
+        this.cusPhone = cusPhone;
+        this.cusMail = cusMail;
+        this.cusAddress = cusAddress;
+        this.cusGender = cusGender;
+        this.cusBirthdate = cusBirthdate;
+        this.startDate = startDate;
+        this.Point = Point;
+    }
+    
+    
+
     public String getCusId() {
         return cusId;
     }

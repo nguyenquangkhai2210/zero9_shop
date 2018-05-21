@@ -79,7 +79,7 @@ public class ProductDAO implements Serializable {
         List<ProductDTO> list = new ArrayList<>();
         try {
             conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT TOP 15 ProID, ProName, ProPrice, Stock, CreatedTime, isActive, SaleOff FROM tblProduct";
+            String sql = "SELECT TOP 12 * FROM tblProduct";
             stm = conn.prepareStatement(sql);
             rs = stm.executeQuery();
             while (rs.next()) {
@@ -91,7 +91,8 @@ public class ProductDAO implements Serializable {
                 String createTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(createTime);
                 boolean isActive = rs.getBoolean("isActive");
                 int saleOff = rs.getInt("SaleOff");
-                ProductDTO tmp = new ProductDTO(id, name, price, stock, createTimeFormat, isActive, saleOff);
+                String reseverdPoint = rs.getString("ReservedPoint");
+                ProductDTO tmp = new ProductDTO(id, name, reseverdPoint, price, stock, name, createTimeFormat, isActive, saleOff, saleOff);
                 list.add(tmp);
             }
         } finally {
