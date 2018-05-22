@@ -7,6 +7,7 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpSession;
  */
 public class LogoutServlet extends HttpServlet {
 
-    final static String loginPage = "login.jsp";
+    final static String logoutPage = "logout.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,12 +35,21 @@ public class LogoutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            HttpSession session = request.getSession();
-            if (session.getAttribute("username") != null) {
-                
+            String url = logoutPage;
+            HttpSession session = request.getSession(false);
+//            response.setHeader("Cache-Control", "no-cache");
+//            response.setHeader("Cache-Control", "no-store");
+//            response.setHeader("Pragma", "no-cache");
+//            response.setDateHeader("Expires", 0);
+
+            if (session.getAttribute("loginUser") != null) {
                 session.invalidate();
-                response.sendRedirect(loginPage);
-          
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Cache-Control", "no-store");
+                response.setHeader("Pragma", "no-cache");
+                response.setDateHeader("Expires", 0);
+                RequestDispatcher rd = request.getRequestDispatcher(url);
+                rd.forward(request, response);
             }
         } finally {
             out.close();

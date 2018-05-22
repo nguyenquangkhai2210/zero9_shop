@@ -20,7 +20,6 @@
         <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
-
         <div class="row mr-0 ml-0">
             <%@include file="sidebar.jsp" %>
             <div class="col-lg-10 col-md-7">

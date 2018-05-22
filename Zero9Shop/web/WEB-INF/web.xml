@@ -29,7 +29,7 @@
         <servlet-class>shop.servlet.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ViewProduct</servlet-name>
+        <servlet-name>ViewProductServlet</servlet-name>
         <servlet-class>shop.servlet.ViewProductServlet</servlet-class>
     </servlet>
     <servlet>
@@ -51,6 +51,14 @@
     <servlet>
         <servlet-name>ViewPromotionServlet</servlet-name>
         <servlet-class>shop.servlet.ViewPromotionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>shop.servlet.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchEmployeeServlet</servlet-name>
+        <servlet-class>shop.servlet.SearchEmployeeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
@@ -81,8 +89,8 @@
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ViewProduct</servlet-name>
-        <url-pattern>/ViewProduct</url-pattern>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <url-pattern>/ViewProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewDetailProductServlet</servlet-name>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>ViewPromotionServlet</servlet-name>
         <url-pattern>/ViewPromotionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/SearchProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchEmployeeServlet</servlet-name>
+        <url-pattern>/SearchEmployeeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

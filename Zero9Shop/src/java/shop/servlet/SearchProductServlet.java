@@ -7,8 +7,9 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -16,16 +17,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import shop.customer.CustomerDTO;
-import shop.customer.CustomerDAO;
+import shop.product.ProductDAO;
+import shop.product.ProductDTO;
+import static shop.servlet.ViewProductServlet.productPage;
 
 /**
  *
  * @author THANH HUNG
  */
-public class ViewProfileCustomerServlet extends HttpServlet {
+public class SearchProductServlet extends HttpServlet {
 
-    final static String customerProfile = "customerProfile.jsp";
+    final static String productPage = "product.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -39,26 +41,20 @@ public class ViewProfileCustomerServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        CustomerDTO customer = null;
-        String url = customerProfile;
+        String search = request.getParameter("txtSearch");
         try {
-            String idCus = request.getParameter("idCus");
-            customer = CustomerDAO.getCustomerProfile(idCus);
-            if (customer != null) {
-                request.setAttribute("customerProfile", customer);
-            }
-            RequestDispatcher rd = request.getRequestDispatcher(url);
+            List<ProductDTO> product = new ArrayList();
+            product = new ProductDAO().findByNameProduct(search);
+            request.setAttribute("ProductList", product);
+            RequestDispatcher rd = request.getRequestDispatcher(productPage);
             rd.forward(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

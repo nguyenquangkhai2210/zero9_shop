@@ -14,7 +14,7 @@ import java.util.Calendar;
  *
  * @author THANH HUNG
  */
-public class EmployeeDTO implements Serializable{
+public class EmployeeDTO implements Serializable {
 
     private String empId;
     private String empUsername;
@@ -57,7 +57,7 @@ public class EmployeeDTO implements Serializable{
         this.roleId = RoleId;
     }
 
-    public EmployeeDTO(String empId, String empUsername, String empName, String EmpPhone, String empMail, String emAddress, String empGender, String empBirthdate, String startDate, String endDate) {
+    public EmployeeDTO(String empId, String empUsername, String empName, String EmpPhone, String empMail, String emAddress, String empGender, String empBirthdate, String startDate, String endDate, String RoleId) {
         this.empId = empId;
         this.empUsername = empUsername;
         this.empName = empName;
@@ -68,8 +68,9 @@ public class EmployeeDTO implements Serializable{
         this.empBirthdate = empBirthdate;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.roleId = RoleId;
     }
-    
+
     public String getEmpId() {
         return empId;
     }

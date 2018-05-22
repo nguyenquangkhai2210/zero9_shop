@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="shop.voucher.VoucherDTO"%>
-<%@page import="shop.product.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,7 +22,7 @@
     <body>
         <%
             List<VoucherDTO> list = (List<VoucherDTO>) request.getAttribute("VoucherList");
-            int i = 0;
+            int i = 1;
         %>
        
         <div class="row mr-0 ml-0">
@@ -85,7 +84,7 @@
                                         <%= x.getType()%>
                                     </td>
                                     <td>
-                                        <form action="EditProductServlet" method="POST">
+                                        <form action="" method="POST">
                                             <button class="btn btn-info btn-sm" value="<%= x%>"
                                                     type="submit" name="idProduct">
                                                 Edit</button>

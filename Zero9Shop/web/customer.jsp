@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="shop.customer.CustomerDTO"%>
-<%@page import="shop.product.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +22,13 @@ import shop.utils.DBUtils;
  * @author PhuNDSE63159
  */
 public class ProductDAO implements Serializable {
+
+    Connection conn;
+    PreparedStatement stm;
+    ResultSet rs;
+
+    public ProductDAO() {
+    }
 
     public static ArrayList<ProductDTO> executeQuery(String query, Connection c) throws SQLException, NoSuchAlgorithmException {
         PreparedStatement psm = null;
@@ -73,9 +79,6 @@ public class ProductDAO implements Serializable {
     }
 
     public List<ProductDTO> listProduct() throws ClassNotFoundException, SQLException {
-        Connection conn = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
         List<ProductDTO> list = new ArrayList<>();
         try {
             conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
@@ -132,4 +135,39 @@ public class ProductDAO implements Serializable {
         return result;
     }
 
+    public List<ProductDTO> findByNameProduct(String search) throws ClassNotFoundException, SQLException {
+        List<ProductDTO> list = new ArrayList<>();
+        String id;
+        String name;
+        float price;
+        int stock;
+        Date createTime;
+        String createTimeFormat;
+        boolean isActive;
+        int saleOff;
+        String reseverdPoint;
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT * FROM tblProduct WHERE ProName LIKE ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, "%" + search + "%");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                id = rs.getString("ProID");
+                name = rs.getString("ProName");
+                price = rs.getInt("ProPrice");
+                stock = rs.getInt("Stock");
+                createTime = rs.getDate("CreatedTime");
+                createTimeFormat = new SimpleDateFormat("yyyy-MM-dd").format(createTime);
+                isActive = rs.getBoolean("isActive");
+                saleOff = rs.getInt("SaleOff");
+                reseverdPoint = rs.getString("ReservedPoint");
+                ProductDTO tmp = new ProductDTO(id, name, reseverdPoint, price, stock, name, createTimeFormat, isActive, saleOff, saleOff);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
 }

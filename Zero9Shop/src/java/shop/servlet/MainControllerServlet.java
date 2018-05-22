@@ -7,7 +7,6 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,41 +37,49 @@ public class MainControllerServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String button = request.getParameter("btAction");
+            String url = null;
             if (null == button) {
                 //
             } else {
                 switch (button) {
                     case "Login":
-                        new LoginServlet().processRequest(request, response);
+                        url = "LoginServlet";
                         break;
                     case "SignUp":
-                        new SignUpServlet().processRequest(request, response);
+                        url = "SignUpServlet";
                         break;
                     case "Logout":
-                        new LogoutServlet().processRequest(request, response);
+                        url = "LogoutServlet";
                         break;
                     case "Product":
-                        new ViewProductServlet().processRequest(request, response);
+                        url = "ViewProductServlet";
                         break;
                     case "Customer":
-                        new ViewCustomerServlet().processRequest(request, response);
+                        url = "ViewCustomerServlet";
                         break;
                     case "Employee":
-                        new ViewEmployeeServlet().processRequest(request, response);
+                        url = "ViewEmployeeServlet";
                         break;
                     case "Order":
-                        new ViewOrderServlet().processRequest(request, response);
+                        url = "ViewOrderServlet";
                         break;
                     case "Promotion":
-                        new ViewPromotionServlet().processRequest(request, response);
+                        url = "ViewPromotionServlet";
                         break;
                     case "ChangePassword":
-                        new ChangePasswordServlet().processRequest(request, response);
+                        url = "ChangePasswordServlet";
                         break;
-                   
+                    case "SearchProduct":
+                        url = "SearchProductServlet";
+                        break;
+                    case "SearchEmployee":
+                        url = "SearchEmployeeServlet";
                     default:
                         break;
+
                 }
+                RequestDispatcher rd = request.getRequestDispatcher(url);
+                rd.forward(request, response);
             }
         } catch (Exception e) {
 

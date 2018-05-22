@@ -6,6 +6,7 @@
 package shop.employee;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,7 +99,7 @@ public class EmployeeDAO implements Serializable {
         ResultSet rs = null;
         try {
             conn = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT * FROM tblEmployee WHERE EmpUsername = ? AND EmpPassword = ?";
+            String sql = "SELECT * FROM tblEmployee WHERE EmpUsername = ? AND EmpPassword = ? AND RoleID = 1";
             stm = conn.prepareStatement(sql);
             stm.setString(1, username);
             stm.setString(2, EncryptionUtils.md5(password));
@@ -117,40 +118,43 @@ public class EmployeeDAO implements Serializable {
      * <br>
      * Username of employee is unique key so you can use to find customer
      *
-     * @param username: username in the database
+     * @param idEmp: username in the database
      * @return EmployeeDTO with all information except password is set to null
      * @throws ClassNotFoundException
      * @throws SQLException
      * @throws NoSuchAlgorithmException
      */
-    public static EmployeeDTO getEmployeeProfile(String username) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+    public static EmployeeDTO getEmployeeProfile(String idEmp) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         Connection c = null;
         PreparedStatement psm = null;
         EmployeeDTO employee = null;
         ResultSet rs = null;
         try {
             c = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "Select * from tblEmployee where EmpUsername = ?";
+            String sql = "Select * from tblEmployee where EmpID = ?";
             psm = c.prepareStatement(sql);
-            psm.setString(1, username);
+            psm.setString(1, idEmp);
             rs = psm.executeQuery();
-            String id = rs.getString("EmpID");
-            String name = rs.getString("EmpName");
-            String phone = rs.getString("EmpPhone");
-            String mail = rs.getString("EmpMail");
-            String address = rs.getString("EmpAddress");
-            String gender = rs.getString("EmpGender");
-            String birthdate = rs.getString("EmpBirthdate");
-            String startDate = rs.getString("StartDate");
-            String endDate = rs.getString("EndDate");
-            String role = rs.getString("RoleID");
-            employee = new EmployeeDTO(mail, username, "", name, phone, mail, address, gender, birthdate, startDate, endDate, role);
+            while (rs.next()) {
+                String empUsername = rs.getString("EmpUsername");
+                String empName = rs.getString("EmpName");
+                String empPhone = rs.getString("EmpPhone");
+                String empMail = rs.getString("EmpMail");
+                String empAddress = rs.getString("EmpAddress");
+                String empGender = rs.getString("EmpGender");
+                String empBirthdate = rs.getString("EmpBirthdate");
+                String startDate = rs.getString("StartDate");
+                String endDate = rs.getString("EndDate");
+                String role = rs.getString("RoleID");
+                employee = new EmployeeDTO(idEmp, empUsername, empName, empPhone, empMail, empAddress, empGender, empBirthdate, startDate, endDate, role);
+            }
         } finally {
             DBUtils.closeConnection(c, psm, rs);
         }
         return employee;
     }
-   public List<EmployeeDTO> listEmployee() throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+
+    public List<EmployeeDTO> listEmployee() throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
         Connection conn = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -171,7 +175,71 @@ public class EmployeeDAO implements Serializable {
                 String empBirthdate = rs.getString("EmpBirthdate");
                 String startDate = rs.getString("StartDate");
                 String endDate = rs.getString("EndDate");
-                EmployeeDTO tmp = new EmployeeDTO(empID, empUsername, empName, empPhone, empMail, empAddress, empGender, empBirthdate, startDate, endDate);
+                String role = rs.getString("RoleID");
+                EmployeeDTO tmp = new EmployeeDTO(empID, empUsername, empName, empPhone, empMail, empAddress, empGender, empBirthdate, startDate, endDate, role);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
+
+    public static EmployeeDTO getEmployeeProfileWithUsernam(String username) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        Connection c = null;
+        PreparedStatement psm = null;
+        EmployeeDTO employee = null;
+        ResultSet rs = null;
+        try {
+            c = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "Select * from tblEmployee where EmpUsername = ?";
+            psm = c.prepareStatement(sql);
+            psm.setString(1, username);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                String empID = rs.getString("EmpID");
+                String empName = rs.getString("EmpName");
+                String empPhone = rs.getString("EmpPhone");
+                String empMail = rs.getString("EmpMail");
+                String empAddress = rs.getString("EmpAddress");
+                String empGender = rs.getString("EmpGender");
+                String empBirthdate = rs.getString("EmpBirthdate");
+                String startDate = rs.getString("StartDate");
+                String endDate = rs.getString("EndDate");
+                String role = rs.getString("RoleID");
+                employee = new EmployeeDTO(empID, username, empName, empPhone, empMail, empAddress, empGender, empBirthdate, startDate, endDate, role);
+            }
+        } finally {
+            DBUtils.closeConnection(c, psm, rs);
+        }
+        return employee;
+    }
+
+    public List<EmployeeDTO> findByNameEmployee(String search) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<EmployeeDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT * FROM tblEmployee WHERE EmpName LIKE ?";
+            stm = conn.prepareStatement(sql);
+            search = new String(search.getBytes(), Charset.forName("UTF-8"));
+            stm.setString(1, "%" + search + "%");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String empID = rs.getString("EmpID");
+                String empUsername = rs.getString("EmpUsername");
+                String empName = rs.getString("EmpName");
+                String empPhone = rs.getString("EmpPhone");
+                String empMail = rs.getString("EmpMail");
+                String empAddress = rs.getString("EmpAddress");
+                String empGender = rs.getString("EmpGender");
+                String empBirthdate = rs.getString("EmpBirthdate");
+                String startDate = rs.getString("StartDate");
+                String endDate = rs.getString("EndDate");
+                String role = rs.getString("RoleID");
+                EmployeeDTO tmp = new EmployeeDTO(empID, empUsername, empName, empPhone, empMail, empAddress, empGender, empBirthdate, startDate, endDate, role);
                 list.add(tmp);
             }
         } finally {

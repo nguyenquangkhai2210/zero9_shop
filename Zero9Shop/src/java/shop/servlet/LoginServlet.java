@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import shop.employee.EmployeeDAO;
+import shop.employee.EmployeeDTO;
 
 /**
  *
@@ -48,7 +49,8 @@ public class LoginServlet extends HttpServlet {
             if (result) {
                 url = orderPage;
                 HttpSession session = request.getSession();
-                session.setAttribute("username", username);
+                EmployeeDTO emp =  EmployeeDAO.getEmployeeProfileWithUsernam(username);
+                session.setAttribute("loginUser", emp);
             } 
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

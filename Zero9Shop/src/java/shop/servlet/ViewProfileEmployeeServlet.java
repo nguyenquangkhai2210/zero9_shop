@@ -39,21 +39,21 @@ public class ViewProfileEmployeeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        PrintWriter out = response.getWriter();
+        try {
             String idEmp = request.getParameter("idEmp");
             EmployeeDTO employee = EmployeeDAO.getEmployeeProfile(idEmp);
             String url = employeeProfilePage;
             if (employee != null) {
-                //process
+                request.setAttribute("employeeProfile", employee);
             }
-            RequestDispatcher rd = request.getRequestDispatcher(productPage);
+            RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
             Logger.getLogger(ViewProfileEmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewProfileEmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(ViewProfileEmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            out.close();
         }
     }
 

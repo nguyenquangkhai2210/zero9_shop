@@ -4,9 +4,13 @@
     Author     : THANH HUNG
 --%>
 
+<%@page import="shop.employee.EmployeeDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        EmployeeDTO loginUser = (EmployeeDTO) session.getAttribute("loginUser");
+    %>
     <body>
         <div class="nav flex-column col-xl-2 border-right pr-0" style="height:100vh; overflow: hidden;">
             <div class="align-self-center mt-3">
@@ -24,14 +28,12 @@
                     <div class="d-flex justify-content-center mt-2 mb-2 ">
                         <div class="btn-group">
                             <button type="button" class="btn btn-secondary  col-lg-12" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                <i class="ti-user pl-0">Welcome <%
-                                    out.println(session.getAttribute("username"));
-                                %></i>
+                                <i class="ti-user pl-0">Welcome <%= loginUser.getEmpUsername()%></i>
                             </button>
                         </div>
                     </div>
                     <div class="collapse text-center" id="collapseExample">
-                        <a class="dropdown-item btn" href="#">View Profile</a>
+                        <a class="dropdown-item btn" href="ViewProfileEmployeeServlet?idEmp=<%= loginUser.getEmpId()%>">View Profile</a>
                         <a class="dropdown-item btn" href="changePw.jsp">Change Password</a>
                         <a class="dropdown-item btn" href="MainControllerServlet?btAction=Logout">Logout!</a>
                     </div>
