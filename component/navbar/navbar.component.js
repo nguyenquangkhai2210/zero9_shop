@@ -1,6 +1,8 @@
 var navbarComponent = {
-    templateUrl: './component/navbar/navbar.component.html',
-    controller: function ($scope, $window, $cookies, $route) {
+    bindings: {
+        navbar: '<'
+    },
+    controller: function ($scope, $window, $cookies, $route, $anchorScroll, $location) {
         $scope.productType = ['hat', 'shirt', 'pants', 'shoes', 'accessories'];
         $scope.productsData = [{
             id: 1,
@@ -32,6 +34,27 @@ var navbarComponent = {
         $scope.textColor = "text-white";
         $scope.icon = "navbar-toggler-icon-white";
 
+        var handler;
+
+        handler = function () {
+            if($window.pageYOffset > 10){
+                $scope.bgScroll = "bgScroll";
+                $route.reload();
+            }
+            else{
+                $scope.bgScroll = " ";
+                $route.reload();
+            }
+        };
+
+        angular.element($window).on('scroll', handler);
+
+        this.$onInit = function () {
+            if (this.navbar == "blackColor") {
+                $scope.addColor();
+            }
+        }
+
         $scope.controlMiniBar = function () {
             if ($scope.display == "dsHidden") {
                 $scope.bgColorNav = "bg-white";
@@ -61,7 +84,12 @@ var navbarComponent = {
 
         $scope.clearDropDown = function () {
             $scope.choosedInfo = " ";
-            $scope.clearColor();
+            this.$onInit = function () {
+                if (this.navbar !== "blackColor") {
+                    $scope.clearColor();
+                }
+            }
+
         };
         $scope.chooseInfo = function (choose) {
             $scope.choosedInfo = choose;
@@ -77,29 +105,31 @@ var navbarComponent = {
             if ($window.innerWidth > 991) {
                 flag *= -1;
                 if (flag) {
-                    $scope.clearColor();
                     $scope.clearDropDown();
                     flag = 0;
                 }
             }
         }
 
-        $scope.cart = $cookies.getObject('cart');
+        $scope.cart = [];
         $scope.count = 0;
-        try{
-            $scope.count = $cookies.getObject('cart').length;
-        } catch (error){
-            $scope.count = 0;
+
+        if (!angular.isUndefined($cookies.get('total'))) {
+            $scope.total = parseFloat($cookies.get('total'));
         }
-        
-        $window.onclick = function(){
-            console.log($scope.count);
+
+        if (!angular.isUndefined($cookies.get('cart'))) {
+            $scope.cart = $cookies.getObject('cart');
+        }
+
+        $window.onclick = function () {
             $scope.cart = $cookies.getObject('cart');
             $scope.count = $scope.cart.length;
-            console.log($scope.cart.length);
             $route.reload();
         }
-    }
+
+    },
+    templateUrl: './component/navbar/navbar.component.html'
 }
 
 angular.module('navBar')

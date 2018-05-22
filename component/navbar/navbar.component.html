@@ -1,4 +1,4 @@
-<div class="wrap-navbar">
+<div class="wrap-navbar" ng-class="bgScroll">
     <nav ng-class="bgColorNav" class="navbar navbar-expand-lg navbar-light">
         <button class="navbar-toggler" type="button" ng-click="controlMiniBar()">
             <span ng-class="icon"></span>
@@ -41,6 +41,22 @@
         </div>
         <div ng-class="bgColorCount" class="shopping-cart float-right">
             <span class="count" ng-bind="count"></span>
+            <!-- <div class="product-infomation">
+                <div ng-show="cart.length !== 0">
+                    <h1>CART-SHOW</h1>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="c in cart">
+                            <h4>{{c.name}} |
+                                <span style="color:blue"> {{c.count}} </span>
+                                | {{c.price*c.count | currency}}</h4>
+                            <input type="button" ng-click="removeItemCart(c)" value="Remove" />
+                        </li>
+                    </ul>
+                    Total : {{total | currency}}
+                    <br>
+                    <button type="submit" ng-click="submit()">Submit</button>
+                </div>
+            </div> -->
         </div>
         <div ng-class="display" class="row col-12">
             <nav class="navbar navbar-light col-12">

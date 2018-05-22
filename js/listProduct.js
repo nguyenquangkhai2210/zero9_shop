@@ -1,10 +1,10 @@
-angular.module('listProduct', ['ngCookies', 'navBar', 'shoppingCart', 'ngRoute'])
+angular.module('listProduct', ['ngCookies', 'navBar', 'ngRoute'])
     .factory('PagerService', PagerService)
     .controller('controllerListProduct', controllerListProduct)
 
 function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
     var vm = this;
-    $scope.handleException = function(){
+    $scope.handleException = function () {
         return true;
     }
     //get json
@@ -17,14 +17,6 @@ function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
 
     $scope.cart = [];
     $scope.total = 0;
-
-    if (!angular.isUndefined($cookies.get('total'))) {
-        $scope.total = parseFloat($cookies.get('total'));
-    }
-
-    if (!angular.isUndefined($cookies.get('cart'))) {
-        $scope.cart = $cookies.getObject('cart');
-    }
 
     $scope.addItemToCart = function (product) {
         if ($scope.cart.length === 0) {
@@ -47,35 +39,34 @@ function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
         var expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + 1);
         $cookies.putObject('cart', $scope.cart, { 'expires': expireDate });
-        $scope.cart = $cookies.getObject('cart');
 
         $scope.total += parseFloat(product.price);
         $cookies.put('total', $scope.total, { 'expires': expireDate });
     }
 
-    $scope.removeItemCart = function (product) {
+    // $scope.removeItemCart = function (product) {
 
-        if (product.count > 1) {
-            product.count -= 1;
-            var expireDate = new Date();
-            expireDate.setDate(expireDate.getDate() + 1);
-            $cookies.putObject('cart', $scope.cart, { 'expires': expireDate });
-            $scope.cart = $cookies.getObject('cart');
-        }
-        else if (product.count === 1) {
-            var index = $scope.cart.indexOf(product);
-            $scope.cart.splice(index, 1);
-            expireDate = new Date();
-            expireDate.setDate(expireDate.getDate() + 1);
-            $cookies.putObject('cart', $scope.cart, { 'expires': expireDate });
-            $scope.cart = $cookies.getObject('cart');
+    //     if (product.count > 1) {
+    //         product.count -= 1;
+    //         var expireDate = new Date();
+    //         expireDate.setDate(expireDate.getDate() + 1);
+    //         $cookies.putObject('cart', $scope.cart, { 'expires': expireDate });
+    //         $scope.cart = $cookies.getObject('cart');
+    //     }
+    //     else if (product.count === 1) {
+    //         var index = $scope.cart.indexOf(product);
+    //         $scope.cart.splice(index, 1);
+    //         expireDate = new Date();
+    //         expireDate.setDate(expireDate.getDate() + 1);
+    //         $cookies.putObject('cart', $scope.cart, { 'expires': expireDate });
+    //         $scope.cart = $cookies.getObject('cart');
 
-        }
+    //     }
 
-        $scope.total -= parseFloat(product.price);
-        $cookies.put('total', $scope.total, { 'expires': expireDate });
+    //     $scope.total -= parseFloat(product.price);
+    //     $cookies.put('total', $scope.total, { 'expires': expireDate });
 
-    };
+    // };
 
     // $scope.submit = function () {
     //     $scope.posts().then($scope.reloads());

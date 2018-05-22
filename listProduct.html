@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="listProduct">
 
 <head>
     <meta charset="UTF-8">
@@ -16,16 +16,18 @@
     <script src="./lib/angular.min.js"></script>
     <script src="./lib/angular-router.min.js"></script>
     <script src="./lib/angular-cookies.min.js"></script>
+
     <script src="./lib/angular-sanitize.min.js"></script>
     <script src="./lib/angular-animate.min.js"></script>
+    
     <script src="./lib/lodash.js"></script>
 
 </head>
 
-<body ng-app="listProduct">
-    <navbar></navbar>
+<body>
+    <navbar navbar="navbar = 'blackColor'"></navbar>
     <div ng-controller="controllerListProduct as vm" ng-click="handleException()">
-        <div class="content">
+        <div class="content myDiv">
             <!-- items being paged -->
             <div class="wrap-product">
                 <div class="description">
@@ -72,30 +74,12 @@
                     </li>
                 </ul>
             </div>
-
-            <!-- Shopping cart -->
-            <div ng-show="cart.length !== 0">
-                <h1>CART-SHOW</h1>
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="c in cart">
-                        <h4>{{c.name}} |
-                            <span style="color:blue"> {{c.count}} </span>
-                            | {{c.price*c.count | currency}}</h4>
-                        <input type="button" ng-click="removeItemCart(c)" value="Remove" />
-                    </li>
-                </ul>
-                Total : {{total | currency}}
-                <br>
-                <button type="submit" ng-click="submit()">Submit</button>
-            </div>
         </div>
     </div>
 
     <script src="./js/listProduct.js"></script>
     <script src="./component/navbar/navbar.module.js"></script>
     <script src="./component/navbar/navbar.component.js"></script>
-    <script src="./shoppingCart.module.js"></script>
-    <script src="./shoppingCart.component.js"></script>
 </body>
 
 </html>
