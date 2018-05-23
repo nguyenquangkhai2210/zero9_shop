@@ -122,6 +122,145 @@
 .bgScroll {
     animation: hidden 1s forwards;
 }
+
+.header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5.7rem;
+}
+
+.header .description{
+    max-width: 100%;
+    padding-right: 10rem;
+    color: rgb(115, 115, 115);
+    font-size: 0.9rem;
+}
+.header .description span{
+    font-size: 1.1rem;
+    color: rgb(70, 70, 70);
+}
+
+.header .filter{
+    width: auto;
+}
+
+.header .filter button {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(70, 70, 70);
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.header .filter button span{
+    color: rgb(100, 100, 100);
+    font-weight: 100;
+}
+
+.header .filter .filterFromHidden{
+    display: none;
+    position: fixed;
+    top: 5rem;
+    right: 2rem;
+    width: 50vw;
+    height: 70vh;
+    background-color: white;
+    z-index: 1;
+}
+
+.header .filter .filterFromHidden .layout {
+    width: 100%;
+    height: 100%;
+    padding:  0 3rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: baseline;
+    position: relative;
+}
+
+.header .filter .filterFromHidden .layout .color, .size, .style, .texture{
+    width: 23%;
+    height: 70%;
+    margin-bottom: 3rem;
+    display: flex;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+.header .filter .filterFromHidden .layout .style, .texture{
+    flex-direction: column;
+}
+
+.header .filter .filterFromHidden .layout h3 {
+    width: 100%;
+    font-size: 1.3rem !important;
+    text-transform:  capitalize;
+}
+
+.header .filter .filterFromHidden .layout span{
+    width: 40%;
+}
+
+.header .filter .filterFromHidden .layout .button{
+    width: 100%;
+    text-align: right;
+}
+
+.header .filter .filterFromHidden .layout .color span{
+    display: inline-block;
+    width: 2.1rem;
+    height: 2.1rem;
+    margin: 0.8rem 1.16rem 0.8rem 0;
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+}
+.color .white {
+    background-color: #ffffff;
+}
+.color .grey{
+    background-color: #a1a1a1;
+}
+.color .black{
+    background-color: #000000;
+}
+.color .navy{
+    background-color: #15243c;
+}
+.color .blue{
+    background-color: #7494af;
+}
+.color .green{
+    background-color: #395043;
+}
+.color .sand{
+    background-color: #c2b088;
+}
+.color .pink{
+    background-color: #daa899;
+}
+.color .orange{
+    background-color: #d2583e;
+}
+
+.filterFromHidden .layout .textColor{
+    position: absolute;
+    bottom: 1rem;
+    left: 3rem;
+}
+.textColor span{
+    display: none;
+    text-transform: capitalize;
+}
+.white .white, .grey .grey, .black .black, .navy .navy, .blue .blue, .green .green, .sand .sand, .pink .pink, .orange .orange{
+    display: block !important;
+}
+.header .filter .filterFromShow{
+    display: block !important;
+}
+
 @keyframes show{
     from{
         opacity: 0;

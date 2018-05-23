@@ -4,20 +4,40 @@ angular.module('listProduct', ['ngCookies', 'navBar', 'ngRoute'])
 
 function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
     var vm = this;
-    $scope.handleException = function () {
-        return true;
-    }
     //get json
     $http.get("http://5ad6e99acd67c10014c73d9d.mockapi.io/product").then(function (response) {
         vm.allProducts = response.data;
         initController();
     });
+
+    vm.colour = ['white', 'grey', 'black', 'navy', 'blue', 'green', 'sand', 'pink', 'orange'];
+    vm.sizes = [35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47];
+    vm.styles = ['Low', 'Mid', 'High', 'Trainer'];
+    vm.textures = ['Leather', 'Non-leather', 'Nubuck', 'Technical'];
+
     vm.pager = {};
     vm.setPage = setPage;
 
     $scope.cart = [];
     $scope.total = 0;
 
+    $scope.filterFrom = " ";
+    $scope.openFilterFrom = function(){
+        $scope.filterFrom = "filterFromShow";
+    }
+
+    $scope.closeFilterFrom = function(){
+        $scope.filterFrom = " ";
+    }
+
+    $scope.choosedColor = " ";
+    $scope.chooseColor = function(color){
+        $scope.choosedColor = color;
+    }
+
+    $scope.notChooseColor = function(){
+        $scope.choosedColor = " ";
+    }
     $scope.addItemToCart = function (product) {
         if ($scope.cart.length === 0) {
             product.count = 1;

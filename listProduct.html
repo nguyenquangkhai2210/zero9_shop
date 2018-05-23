@@ -19,7 +19,7 @@
 
     <script src="./lib/angular-sanitize.min.js"></script>
     <script src="./lib/angular-animate.min.js"></script>
-    
+
     <script src="./lib/lodash.js"></script>
 
 </head>
@@ -27,17 +27,49 @@
 <body>
     <navbar navbar="navbar = 'blackColor'"></navbar>
     <div ng-controller="controllerListProduct as vm" ng-click="handleException()">
-        <div class="content myDiv">
+        <div class="content">
             <!-- items being paged -->
-            <div class="wrap-product">
+            <div class="header">
                 <div class="description">
-                    <div class="layout">
-                        <h3>Men</h3>
-                        <p>
-                            A thoughtful range of ETQ silhouettes for men. Premium quality products that last, with aesthetics that match the quality.
-                        </p>
+                    <span>Men</span>
+                    <br> A thoughtful range of ETQ silhouettes for men. Premium quality products that last, with aesthetics that
+                    match the quality
+                </div>
+                <div class="filter">
+                    <button ng-click="openFilterFrom()">Filter
+                        <span>&#8690;</span>
+                    </button>
+                    <div ng-class="filterFrom" class="filterFromHidden">
+                        <div class="layout">
+                            <div class="button">
+                                <button ng-click="closeFilterFrom()">&#8689;</button>
+                            </div>
+                            <div class="color">
+                                <h3>colour</h3>
+                                <span ng-repeat="color in vm.colour" ng-class="color" ng-mouseover="chooseColor(color)" ng-mouseleave="notChooseColor()"></span>
+                            </div>
+                            <div class="size">
+                                <h3>size</h3>
+                                <span ng-repeat="size in vm.sizes">{{size}}</span>
+                            </div>
+                            <div class="style">
+                                <h3>style</h3>
+                                <span ng-repeat="style in vm.styles">{{style}}</span>
+                            </div>
+                            <div class="texture">
+                                <h3>texture</h3>
+                                <span ng-repeat="texture in vm.textures">{{texture}}</span>
+                            </div>
+                            <div class="textColor">
+                                <div ng-repeat="color in vm.colour" ng-class="choosedColor">
+                                    <span ng-class="color">{{color}}</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="wrap-product">
                 <div class="item" ng-repeat="product in vm.products">
                     <a class="layout" ng-click="addItemToCart(product)">
                         <img class="first" style="background-image: url('./img/nav-content-info/Etq-Amsterdam-Fitpic-Low-3-Ash-1-1-750x0-c-default.jpg')"
