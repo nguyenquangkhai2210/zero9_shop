@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import shop.employee.EmployeeDTO;
 import shop.product.ProductDTO;
 import shop.utils.DBUtils;
 
@@ -27,40 +28,39 @@ import shop.utils.DBUtils;
  */
 public class CustomerDAO implements Serializable {
 
-    public static ArrayList<CustomerDTO> executeQuery(String query, Connection c) throws SQLException, NoSuchAlgorithmException {
-        PreparedStatement psm = null;
-        ResultSet rs = null;
-        ArrayList<CustomerDTO> listCustomer = null;
-        try {
-            psm = c.prepareStatement(query);
-            rs = psm.executeQuery();
-            listCustomer = new ArrayList<>();
-            while (rs.next()) {
-                String id = rs.getString("CusID");
-                String username = rs.getString("CusUsername");
-                String pass = rs.getString("CusPassword");
-                String name = rs.getString("CusName");
-                String phone = rs.getString("CusPhone");
-                String mail = rs.getString("CusMail");
-                String address = rs.getString("CusAddress");
-                String gender = rs.getString("CusGender");
-                String birthdate = rs.getString("CusBirthdate");
-                String startdate = rs.getString("StartDate");
-                int point = rs.getInt("Point");
-                CustomerDTO customer = new CustomerDTO(id, username, pass, name, phone, mail, address, gender, birthdate, startdate, point);
-                listCustomer.add(customer);
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (psm != null) {
-                psm.close();
-            }
-        }
-        return listCustomer;
-    }
-
+//    public static ArrayList<CustomerDTO> executeQuery(String query, Connection c) throws SQLException, NoSuchAlgorithmException {
+//        PreparedStatement psm = null;
+//        ResultSet rs = null;
+//        ArrayList<CustomerDTO> listCustomer = null;
+//        try {
+//            psm = c.prepareStatement(query);
+//            rs = psm.executeQuery();
+//            listCustomer = new ArrayList<>();
+//            while (rs.next()) {
+//                String id = rs.getString("CusID");
+//                String username = rs.getString("CusUsername");
+//                String pass = rs.getString("CusPassword");
+//                String name = rs.getString("CusName");
+//                String phone = rs.getString("CusPhone");
+//                String mail = rs.getString("CusMail");
+//                String address = rs.getString("CusAddress");
+//                String gender = rs.getString("CusGender");
+//                String birthdate = rs.getString("CusBirthdate");
+//                String startdate = rs.getString("StartDate");
+//                int point = rs.getInt("Point");
+//                CustomerDTO customer = new CustomerDTO(id, username, pass, name, phone, mail, address, gender, birthdate, startdate, point);
+//                listCustomer.add(customer);
+//            }
+//        } finally {
+//            if (rs != null) {
+//                rs.close();
+//            }
+//            if (psm != null) {
+//                psm.close();
+//            }
+//        }
+//        return listCustomer;
+//    }
     public static int executeUpdate(String query, Connection c) throws SQLException {
         PreparedStatement psm = null;
         int result;
@@ -185,5 +185,65 @@ public class CustomerDAO implements Serializable {
             DBUtils.closeConnection(conn, stm, rs);
         }
         return list;
+    }
+
+    public List<CustomerDTO> findByNameCustomer(String search) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<CustomerDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT * FROM tblCustomer WHERE CusName LIKE ?";
+            stm = conn.prepareStatement(sql);
+            search = new String(search.getBytes(), Charset.forName("UTF-8"));
+            stm.setString(1, "%" + search + "%");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String cusID = rs.getString("CusID");
+                String cusUsername = rs.getString("CusUsername");
+                String cusName = rs.getString("CusName");
+                String cusPhone = rs.getString("CusPhone");
+                String cusMail = rs.getString("CusMail");
+                String cusAddress = rs.getString("CusAddress");
+                String cusGender = rs.getString("CusGender");
+                String cusBirthdate = rs.getString("CusBirthdate");
+                String startDate = rs.getString("StartDate");
+                int point = rs.getInt("Point");
+                CustomerDTO tmp = new CustomerDTO(cusID, cusUsername, cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate, startDate, point);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
+
+    public static boolean updateCustomerProfile(String cusID, CustomerDTO cus) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        Connection c = null;
+        PreparedStatement psm = null;
+        try {
+            c = shop.utils.DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "UPDATE tblCustomer SET CusName = ?, CusPhone = ?, CusMail = ?, CusAddress = ?, CusGender = ?, CusBirthdate = ? WHERE CusID = ?";
+            psm = c.prepareStatement(sql);
+            psm.setNString(1, cus.getCusName());
+            psm.setString(2, cus.getCusPhone());
+            psm.setString(3, cus.getCusMail());
+            String adress = cus.getCusAddress();
+
+            psm.setNString(4,adress);
+//            psm.setString(4, adress);
+            psm.setString(5, cus.getCusGender());
+            psm.setString(6, cus.getCusBirthdate());
+            psm.setString(7, cusID);
+            int result = psm.executeUpdate();
+            if (result > 0) {
+                return true;
+            }
+
+        } finally {
+            DBUtils.closeConnection(c, psm);
+        }
+        return false;
     }
 }

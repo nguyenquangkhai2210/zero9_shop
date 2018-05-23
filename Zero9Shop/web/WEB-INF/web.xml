@@ -60,6 +60,14 @@
         <servlet-name>SearchEmployeeServlet</servlet-name>
         <servlet-class>shop.servlet.SearchEmployeeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchCustomerServlet</servlet-name>
+        <servlet-class>shop.servlet.SearchCustomerServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProfileCustomerServlet</servlet-name>
+        <servlet-class>shop.servlet.UpdateProfileCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>SearchEmployeeServlet</servlet-name>
         <url-pattern>/SearchEmployeeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCustomerServlet</servlet-name>
+        <url-pattern>/SearchCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileCustomerServlet</servlet-name>
+        <url-pattern>/UpdateProfileCustomerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

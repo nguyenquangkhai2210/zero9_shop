@@ -6,6 +6,7 @@
 package shop.customer;
 
 import java.io.Serializable;
+import java.nio.charset.Charset;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,21 +28,17 @@ public class CustomerDTO implements Serializable{
     private String startDate;
     private int Point;
 
-    public CustomerDTO(String cusId, String cusUsername, String cusPassword, String cusName, String cusPhone,
-            String cusMail, String cusAddress, String cusGender, String cusBirthdate, String startDate, int Point)
-            throws NoSuchAlgorithmException {
-        this.cusId = cusId;
-        this.cusUsername = cusUsername;
-        this.cusPassword = shop.utils.EncryptionUtils.md5(cusPassword);
+    public CustomerDTO(String cusName, String cusPhone, String cusMail, String cusAddress, String cusGender, String cusBirthdate) {
         this.cusName = cusName;
         this.cusPhone = cusPhone;
         this.cusMail = cusMail;
         this.cusAddress = cusAddress;
         this.cusGender = cusGender;
         this.cusBirthdate = cusBirthdate;
-        this.startDate = startDate;
-        this.Point = Point;
     }
+
+     
+    
 
     public CustomerDTO(String cusId, String cusUsername, String cusPassword, String cusName, String cusPhone,
             String cusMail, String cusAddress) throws NoSuchAlgorithmException {
@@ -69,6 +66,10 @@ public class CustomerDTO implements Serializable{
         this.startDate = startDate;
         this.Point = Point;
     }
+
+    public CustomerDTO() {
+    }
+     
     
     
 

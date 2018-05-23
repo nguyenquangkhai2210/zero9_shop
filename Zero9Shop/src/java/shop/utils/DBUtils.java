@@ -23,7 +23,6 @@ public class DBUtils {
     public static Connection getConnection(String user, String password, String databaseName) throws ClassNotFoundException, SQLException {
         Class.forName(driver);
         Connection conn = DriverManager.getConnection(url + databaseName, user, password);
-
         return conn;
     }
 

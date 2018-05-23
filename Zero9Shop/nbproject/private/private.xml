@@ -29,17 +29,11 @@
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/login.jsp</file>
         </group>
         <group name="JavaWeb">
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/sidebar.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/order.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/SearchProductServlet.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/product.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/product/ProductDAO.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/customer.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/SearchEmployeeServlet.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/employee.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/employee/EmployeeDAO.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/promotionDetail.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/MainControllerServlet.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/utils/DBUtils.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/ViewProfileCustomerServlet.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/customer/CustomerDTO.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/UpdateProfileCustomerServlet.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/customerProfile.jsp</file>
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/customer/CustomerDAO.java</file>
         </group>
     </open-files>

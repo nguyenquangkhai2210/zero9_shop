@@ -28,9 +28,9 @@
             <div class="col-lg-10 col-md-7">
                 <%@include file="header.jsp" %>
 
-                <form class="d-flex justify-content-end mt-2 mb-2 pr-3">
-                    <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search">
-                    <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
+                <form class="d-flex justify-content-end mt-2 mb-2 pr-3" method="GET" action="MainControllerServlet">   
+                    <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search" autocomplete="off" name="txtSearch">
+                    <button class="btn btn-outline-primary my-2 my-sm-0 ml-1"type="submit" value="SearchCustomer" name="btAction">Search</button>
                 </form>
                 <div class="card mt-4">
                     <div class="header">

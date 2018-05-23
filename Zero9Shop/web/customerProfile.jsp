@@ -48,7 +48,6 @@
                             <hr>
                             <div class="text-center">
                                 <div class="row">
-
                                     <div class="col-md-12">
                                         <h5><%= x.getPoint()%><br><small>Point</small></h5>
                                     </div>
@@ -63,11 +62,12 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form method="POST" action="UpdateProfileCustomerServlet"> 
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Customer ID</label>
+                                                <input type="text" class="d-none" name="idCus" value="<%= x.getCusId()%>">
                                                 <input type="text" class="form-control border-input" disabled="" value="<%= x.getCusId()%>">
                                             </div>
                                         </div>
@@ -77,12 +77,17 @@
                                                 <input type="text" class="form-control border-input" disabled="" value="<%= x.getCusUsername()%>">
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Full Name</label>
-                                                <input type="text" class="form-control border-input" value="<%= x.getCusName()%>">
+                                                <input type="text" class="form-control border-input" name="txtName" value="<%= x.getCusName()%>">
                                             </div>
-
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                <input type="text" class="form-control border-input" name="txtGender" value="<%= x.getCusGender()%>">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -90,19 +95,19 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Email address</label>
-                                                <input type="email" class="form-control border-input" value="<%= x.getCusMail()%>">
+                                                <input type="email" class="form-control border-input" name="txtMail" value="<%= x.getCusMail()%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" class="form-control border-input"  value="<%= x.getCusAddress()%>">
+                                                <input type="text" class="form-control border-input" name="txtAddress"  value="<%= x.getCusAddress()%>">
                                             </div>
                                         </div> 
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Phone</label>
-                                                <input type="text" class="form-control border-input" value="<%= x.getCusPhone()%>">
+                                                <input type="text" class="form-control border-input"  name="txtPhone" value="<%= x.getCusPhone()%>">
                                             </div>
                                         </div>
                                     </div>
@@ -117,13 +122,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Birthday</label>
-                                                <input type="text" class="form-control border-input" value="<%= x.getCusBirthdate()%>">
+                                                <input type="text" class="form-control border-input"  name="txtBirthdate" value="<%= x.getCusBirthdate()%>">
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                                        <button type="submit" class="btn btn-danger btn-fill btn-wd">Delete Profile</button>
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>

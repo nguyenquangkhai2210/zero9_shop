@@ -7,6 +7,9 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,16 +19,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import shop.customer.CustomerDTO;
 import shop.customer.CustomerDAO;
+import shop.customer.CustomerDTO;
 
 /**
  *
  * @author THANH HUNG
  */
-public class ViewProfileCustomerServlet extends HttpServlet {
-
-    final static String customerProfile = "customerProfile.jsp";
+public class UpdateProfileCustomerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,28 +39,29 @@ public class ViewProfileCustomerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        CustomerDTO customer = null;
-        String url = customerProfile;
+        String cusID = request.getParameter("idCus");
+        String cusName = request.getParameter("txtName");
+        String cusMail = request.getParameter("txtMail");
+        String cusGender = request.getParameter("txtGender");
+        String cusAddress = request.getParameter("txtAddress");
+//        cusAddress = new String(cusAddress.getBytes("UTF-8"), "ISO-8859-1");
+
+        String cusPhone = request.getParameter("txtPhone");
+        String cusBirthdate = request.getParameter("txtBirthdate");
         try {
-            String idCus = request.getParameter("idCus");
-            customer = CustomerDAO.getCustomerProfile(idCus);
-            if (customer != null) {
-                request.setAttribute("customerProfile", customer);
+            CustomerDTO cus = new CustomerDTO(cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate);
+            boolean result = CustomerDAO.updateCustomerProfile(cusID, cus);
+            if (result) {
+                RequestDispatcher rd = request.getRequestDispatcher("ViewProfileCustomerServlet");
+                rd.forward(request, response);
             }
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
+            Logger.getLogger(UpdateProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

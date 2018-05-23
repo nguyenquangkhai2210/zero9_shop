@@ -7,8 +7,9 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -16,16 +17,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import shop.customer.CustomerDTO;
 import shop.customer.CustomerDAO;
+import shop.customer.CustomerDTO;
+
 
 /**
  *
  * @author THANH HUNG
  */
-public class ViewProfileCustomerServlet extends HttpServlet {
-
-    final static String customerProfile = "customerProfile.jsp";
+public class SearchCustomerServlet extends HttpServlet {
+    final static String customerPage = "customer.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,28 +39,20 @@ public class ViewProfileCustomerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
         PrintWriter out = response.getWriter();
-        CustomerDTO customer = null;
-        String url = customerProfile;
+        String search = request.getParameter("txtSearch");
+        String url = customerPage;
         try {
-            String idCus = request.getParameter("idCus");
-            customer = CustomerDAO.getCustomerProfile(idCus);
-            if (customer != null) {
-                request.setAttribute("customerProfile", customer);
-            }
+            List<CustomerDTO> cus = new ArrayList();
+            cus = new CustomerDAO().findByNameCustomer(search);
+            request.setAttribute("CustomerList", cus);
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(ViewProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(SearchProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
