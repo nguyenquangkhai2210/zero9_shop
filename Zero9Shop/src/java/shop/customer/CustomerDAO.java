@@ -12,14 +12,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
-import shop.employee.EmployeeDTO;
-import shop.product.ProductDTO;
+
 import shop.utils.DBUtils;
 
 /**
@@ -90,7 +89,12 @@ public class CustomerDAO implements Serializable {
             while (rs.next()) {
                 String ID = rs.getString("CusID");
                 int index = Integer.parseInt(ID.substring(1)) + 1;
-                finalID = "C0" + index;
+                if (index < 100) {
+                    finalID = "C0" + index;
+                } else {
+                    finalID = "C" + index;
+                }
+                // bug
             }
             String sql = "INSERT INTO tblCustomer(CusID,CusUsername , CusPassword, CusMail, CusName, CusPhone, CusGender, CusAddress,StartDate, Point) Values (?,?,?,?,?,?,?,?,?,0)";
             stm = conn.prepareStatement(sql);
@@ -230,9 +234,7 @@ public class CustomerDAO implements Serializable {
             psm.setString(2, cus.getCusPhone());
             psm.setString(3, cus.getCusMail());
             String adress = cus.getCusAddress();
-
-            psm.setNString(4,adress);
-//            psm.setString(4, adress);
+            psm.setNString(4, adress);
             psm.setString(5, cus.getCusGender());
             psm.setString(6, cus.getCusBirthdate());
             psm.setString(7, cusID);

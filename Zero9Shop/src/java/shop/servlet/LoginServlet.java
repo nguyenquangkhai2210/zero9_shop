@@ -26,7 +26,7 @@ import shop.employee.EmployeeDTO;
  */
 public class LoginServlet extends HttpServlet {
 
-    final static String orderPage = "order.jsp";
+    final static String orderPage = "ViewOrderServlet";
     final static String loginPage = "login.jsp";
 
     /**
@@ -54,11 +54,7 @@ public class LoginServlet extends HttpServlet {
             } 
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
+        } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();

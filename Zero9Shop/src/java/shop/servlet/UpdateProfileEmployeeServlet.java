@@ -16,14 +16,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import shop.customer.CustomerDAO;
-import shop.customer.CustomerDTO;
+import shop.employee.EmployeeDAO;
+import shop.employee.EmployeeDTO;
 
 /**
  *
  * @author THANH HUNG
  */
-public class UpdateProfileCustomerServlet extends HttpServlet {
+public class UpdateProfileEmployeeServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,19 +38,18 @@ public class UpdateProfileCustomerServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String cusID = request.getParameter("idCus");
-        String cusName = request.getParameter("txtName");
-        String cusMail = request.getParameter("txtMail");
-        String cusGender = request.getParameter("chkGender"); // CHUA SUA
-        String cusAddress = request.getParameter("txtAddress");
-//        cusAddress = new String(cusAddress.getBytes("UTF-8"), "ISO-8859-1");
-        String cusPhone = request.getParameter("txtPhone");
-        String cusBirthdate = request.getParameter("txtBirthdate");
+        String empID = request.getParameter("idEmp");
+        String empName = request.getParameter("txtName");
+        String empMail = request.getParameter("txtMail");
+        String empGender = request.getParameter("chkGender");
+        String empAddress = request.getParameter("txtAddress");
+        String empPhone = request.getParameter("txtPhone");
+        String empBirthdate = request.getParameter("txtBirthdate");
         try {
-            CustomerDTO cus = new CustomerDTO(cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate);
-            boolean result = CustomerDAO.updateCustomerProfile(cusID, cus);
+            EmployeeDTO cus = new EmployeeDTO(empName, empPhone, empMail, empAddress, empGender, empBirthdate);
+            boolean result = EmployeeDAO.updateCustomerProfile(empID, cus);
             if (result) {
-                RequestDispatcher rd = request.getRequestDispatcher("ViewProfileCustomerServlet");
+                RequestDispatcher rd = request.getRequestDispatcher("ViewProfileEmployeeServlet");
                 rd.forward(request, response);
             }
         } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {

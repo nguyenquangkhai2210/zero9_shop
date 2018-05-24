@@ -68,6 +68,18 @@
         <servlet-name>UpdateProfileCustomerServlet</servlet-name>
         <servlet-class>shop.servlet.UpdateProfileCustomerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProfileEmployeeServlet</servlet-name>
+        <servlet-class>shop.servlet.UpdateProfileEmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>shop.servlet.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddEmployeeServlet</servlet-name>
+        <servlet-class>shop.servlet.AddEmployeeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ChangePasswordServlet</servlet-name>
         <url-pattern>/ChangePasswordServlet</url-pattern>
@@ -135,6 +147,18 @@
     <servlet-mapping>
         <servlet-name>UpdateProfileCustomerServlet</servlet-name>
         <url-pattern>/UpdateProfileCustomerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileEmployeeServlet</servlet-name>
+        <url-pattern>/UpdateProfileEmployeeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddEmployeeServlet</servlet-name>
+        <url-pattern>/AddEmployeeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

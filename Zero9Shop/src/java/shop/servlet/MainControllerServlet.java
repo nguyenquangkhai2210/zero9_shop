@@ -74,8 +74,8 @@ public class MainControllerServlet extends HttpServlet {
                         break;
                     case "SearchEmployee":
                         url = "SearchEmployeeServlet";
-                    case "SearchCustomer":
-                        url = "SearchCustomerServlet";
+//                    case "SearchCustomer":
+//                        url = "SearchCustomerServlet";
                     default:
                         break;
 

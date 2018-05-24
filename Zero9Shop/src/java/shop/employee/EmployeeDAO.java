@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import shop.customer.CustomerDTO;
 import shop.utils.DBUtils;
 import shop.utils.EncryptionUtils;
 
@@ -246,5 +245,55 @@ public class EmployeeDAO implements Serializable {
             DBUtils.closeConnection(conn, stm, rs);
         }
         return list;
+    }
+
+    public static boolean updateCustomerProfile(String empID, EmployeeDTO emp) throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "UPDATE tblEmployee SET EmpName = ?, EmpPhone = ?, EmpMail = ?, EmpAddress = ?, EmpGender = ?, EmpBirthdate = ? WHERE EmpID = ?";
+            psm = conn.prepareStatement(sql);
+            psm.setNString(1, emp.getEmpName());
+            psm.setString(2, emp.getEmpPhone());
+            psm.setString(3, emp.getEmpMail());
+            psm.setNString(4, emp.getEmAddress());
+            psm.setString(5, emp.getEmpGender());
+            psm.setString(6, emp.getEmpBirthdate());
+            psm.setString(7, empID);
+            int result = psm.executeUpdate();
+            if (result > 0) {
+                return true;
+            }
+        } finally {
+            DBUtils.closeConnection(conn, psm);
+        }
+        return false;
+    }
+
+    public static String getIdEmployee() throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement psm = null;
+        ResultSet rs = null;
+        String idEmp = null;
+        String idTmp = null;
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT TOP 1 EmpID FROM tblEmployee ORDER BY EmpID DESC";
+            psm = conn.prepareStatement(sql);
+            rs = psm.executeQuery();
+            while (rs.next()) {
+                idTmp = rs.getString("EmpID");
+            }
+            int index = Integer.parseInt(idTmp.substring(1)) + 1;
+            if (index < 100) {
+                idEmp = "E0" + index;
+            } else {
+                idEmp = "E" + index;
+            }
+        } finally {
+            DBUtils.closeConnection(conn, psm);
+        }
+        return idEmp;
     }
 }

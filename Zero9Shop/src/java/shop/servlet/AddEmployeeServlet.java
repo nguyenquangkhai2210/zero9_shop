@@ -7,8 +7,11 @@ package shop.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -16,14 +19,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import shop.customer.CustomerDAO;
-import shop.customer.CustomerDTO;
+import shop.employee.EmployeeDAO;
 
 /**
  *
  * @author THANH HUNG
  */
-public class UpdateProfileCustomerServlet extends HttpServlet {
+public class AddEmployeeServlet extends HttpServlet {
+
+    final static String addNewEmployee = "addEmployee.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,25 +40,17 @@ public class UpdateProfileCustomerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        String cusID = request.getParameter("idCus");
-        String cusName = request.getParameter("txtName");
-        String cusMail = request.getParameter("txtMail");
-        String cusGender = request.getParameter("chkGender"); // CHUA SUA
-        String cusAddress = request.getParameter("txtAddress");
-//        cusAddress = new String(cusAddress.getBytes("UTF-8"), "ISO-8859-1");
-        String cusPhone = request.getParameter("txtPhone");
-        String cusBirthdate = request.getParameter("txtBirthdate");
+        String url = addNewEmployee;
         try {
-            CustomerDTO cus = new CustomerDTO(cusName, cusPhone, cusMail, cusAddress, cusGender, cusBirthdate);
-            boolean result = CustomerDAO.updateCustomerProfile(cusID, cus);
-            if (result) {
-                RequestDispatcher rd = request.getRequestDispatcher("ViewProfileCustomerServlet");
-                rd.forward(request, response);
-            }
-        } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {
-            Logger.getLogger(UpdateProfileCustomerServlet.class.getName()).log(Level.SEVERE, null, ex);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String idEmp = EmployeeDAO.getIdEmployee();
+            request.setAttribute("idEmp", idEmp);
+            request.setAttribute("dateCurrent", dateFormat.format(new Date()));
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(AddEmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

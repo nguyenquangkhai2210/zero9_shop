@@ -12,6 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import shop.customer.CustomerDTO;
+import shop.utils.DBUtils;
 
 /**
  *
@@ -65,4 +68,58 @@ public class OrderDAO implements Serializable {
         return result;
     }
 
+    public static List<OrderDTO> listOrder() throws ClassNotFoundException, SQLException, NoSuchAlgorithmException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<OrderDTO> list = new ArrayList<>();
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT TOP 12 * FROM tblOrder";
+            stm = conn.prepareStatement(sql);
+            rs = stm.executeQuery();
+            String orderId;
+            String createdTime;
+            double orderSum;
+            int point;
+            boolean isAvailable;
+            String code;
+            String cusId;
+            while (rs.next()) {
+                orderId = rs.getString("OrderId");
+                createdTime = rs.getString("CreatedTime");
+                orderSum = rs.getDouble("OrderSum");
+                point = rs.getInt("Point");
+                isAvailable = rs.getBoolean("isAvailable");
+                code = rs.getString("Code");
+                cusId = rs.getString("CusId");
+                OrderDTO tmp = new OrderDTO(orderId, createdTime, orderSum, point, isAvailable, code, cusId);
+                list.add(tmp);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
+
+    public static CustomerDTO getCustomerByID(String cusID) throws ClassNotFoundException, SQLException {
+        Connection conn = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        CustomerDTO list = null;
+        try {
+            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
+            String sql = "SELECT CusUsername FROM tblCustomer WHERE CusID = ?";
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, cusID);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                String cusUsername = rs.getString("CusUsername");
+                list = new CustomerDTO(cusID, cusUsername);
+            }
+        } finally {
+            DBUtils.closeConnection(conn, stm, rs);
+        }
+        return list;
+    }
 }

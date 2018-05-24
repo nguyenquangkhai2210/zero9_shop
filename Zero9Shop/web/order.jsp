@@ -4,7 +4,7 @@
     Author     : THANH HUNG
 --%>
 
-<%@page import="shop.product.ProductDTO"%>
+<%@page import="shop.order.OrderDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,6 +20,9 @@
         <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
     </head>
     <body>
+        <%
+            List<OrderDTO> list = (List<OrderDTO>) request.getAttribute("OrderList");
+        %>
         <div class="row mr-0 ml-0">
             <%@include file="sidebar.jsp" %>
             <div class="col-lg-10 col-md-7">
@@ -29,26 +32,74 @@
                     <input class="form-control mr-sm-3  col-8 col-lg-1" type="search" placeholder="Search Name" aria-label="Search">
                     <button class="btn btn-outline-primary my-2 my-sm-0 ml-1" type="submit">Search</button>
                 </form>
-                <div class="card mt-4">
-                    <div class="header">
-                        <h4 class="title">Order</h4>
+
+                <div class="row col-lg-12 mr-0 ml-0 pl-2 pr-2 pb-0 table-responsive content">
+                    <div class="card mt-4">
+                        <div class="header">
+                            <h4 class="title">Order</h4>
+                        </div>
+                        <div class="row col-lg-12 mr-0 ml-0 pl-2 pr-2 pb-0 table-responsive content">
+                            <table class="table table-bordered table-hover text-center">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Customer</th>
+
+                                        <th scope="col">Total Price</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <%for (OrderDTO x : list) {
+                                    %>
+                                    <tr>        
+                                        <th scope="row">
+                                            <%= x.getOrderId()%>
+                                        </th>
+                                        <td class="text-left">
+
+                                            <%= x.getCusId()%>
+
+                                        </td>
+                                        <td class="text-left">
+                                            <%= x.getOrderSum()%>
+                                        </td>
+                                        <td class="text-left">
+                                            <%=x.isAvailable()%>
+                                        </td>
+
+
+                                        <td>
+                                            <form action="ViewProfileEmployeeServlet" method="POST">
+                                                <button class="btn btn-info btn-sm" value="<%= x.getOrderId()%>"
+                                                        type="submit" name="idEmp">
+                                                    Detail</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <%}
+
+                                    %> 
+                                </tbody>
+                            </table>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <div class="row col-lg-12 mr-0 ml-0 pl-2 pr-2 pb-0 table-responsive content">
-                        //content will insert here
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    
                 </div>
             </div>
         </div>

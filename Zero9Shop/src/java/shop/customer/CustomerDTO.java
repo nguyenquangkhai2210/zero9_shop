@@ -37,6 +37,11 @@ public class CustomerDTO implements Serializable{
         this.cusBirthdate = cusBirthdate;
     }
 
+    public CustomerDTO(String cusId, String cusUsername) {
+        this.cusId = cusId;
+        this.cusUsername = cusUsername;
+    }
+
      
     
 
