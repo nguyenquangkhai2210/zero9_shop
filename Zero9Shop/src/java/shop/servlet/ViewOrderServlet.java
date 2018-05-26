@@ -18,6 +18,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import shop.customer.CustomerDAO;
+import shop.customer.CustomerDTO;
 import shop.order.OrderDAO;
 import shop.order.OrderDTO;
 
@@ -45,9 +47,16 @@ public class ViewOrderServlet extends HttpServlet {
         try {
             List<OrderDTO> order = new ArrayList<>();
             order = OrderDAO.listOrder();
-            
+            List<CustomerDTO> customer = new ArrayList<>();
+            CustomerDTO cus = null;
+            for (OrderDTO x : order) {
+                cus = CustomerDAO.getCustomerByID(x.getCusId());
+                customer.add(cus);
+            }
             
             request.setAttribute("OrderList", order);
+            request.setAttribute("CustomerList", customer);
+            
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         } catch (ClassNotFoundException | SQLException | NoSuchAlgorithmException ex) {

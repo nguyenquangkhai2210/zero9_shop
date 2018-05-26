@@ -4,6 +4,8 @@
     Author     : THANH HUNG
 --%>
 
+<%@page import="shop.customer.CustomerDTO"%>
+<%@page import="shop.customer.CustomerDAO"%>
 <%@page import="shop.order.OrderDTO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,6 +24,8 @@
     <body>
         <%
             List<OrderDTO> list = (List<OrderDTO>) request.getAttribute("OrderList");
+            List<CustomerDTO> listNameCus = (List<CustomerDTO>) request.getAttribute("CustomerList");
+            int i = 0;
         %>
         <div class="row mr-0 ml-0">
             <%@include file="sidebar.jsp" %>
@@ -44,7 +48,6 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Customer</th>
-
                                         <th scope="col">Total Price</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
@@ -53,6 +56,7 @@
                                 <tbody>
 
                                     <%for (OrderDTO x : list) {
+                                        
                                     %>
                                     <tr>        
                                         <th scope="row">
@@ -60,7 +64,7 @@
                                         </th>
                                         <td class="text-left">
 
-                                            <%= x.getCusId()%>
+                                            <%= listNameCus.get(i++).getCusUsername() %>
 
                                         </td>
                                         <td class="text-left">

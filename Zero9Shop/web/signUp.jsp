@@ -28,7 +28,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">Username</label>
-                            <input type="text" class="form-control" placeholder="userfu" name="txtUsername">
+                            <input type="text" class="form-control" placeholder="userfu"  name="txtUsername">
                         </div>
 
                         <div class="form-group col-md-6">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputAddress">Fullname</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="Phan Thanh Hung" name="txtFullName">
+                            <input type="text" class="form-control" id="fullName" placeholder="Phan Thanh Hung" name="txtFullName">
                         </div>
                     </div>
                     <div class="form-row">
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="row d-flex justify-content-center col-lg-12">
-                        <button type="submit" class="btn btn-primary col-lg-6 mb-3" value="SignUp" name="btAction">Sign up</button>
+                        <button type="submit" class="btn btn-primary col-lg-6 mb-3" value="SignUp" name="btAction" onClick = "return validateForm()">Sign up</button>
                     </div>
                 </form>
 
@@ -88,5 +88,7 @@
         crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+        <script src="js/validateForm.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </body>
 </html>

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -45,6 +48,10 @@ public class LoginServlet extends HttpServlet {
         try {
             String username = request.getParameter("txtUsername");
             String password = request.getParameter("txtPassword");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String idEmp = EmployeeDAO.getIdEmployee();
+            request.setAttribute("idEmp", idEmp);
+            request.setAttribute("dateCurrent", dateFormat.format(new Date()));
             boolean result = EmployeeDAO.checkLogin(username, password);
             if (result) {
                 url = orderPage;

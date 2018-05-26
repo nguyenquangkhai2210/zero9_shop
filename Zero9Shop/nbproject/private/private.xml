@@ -26,20 +26,16 @@
         </group>
         <group name="Zero9Shop">
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/order.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/logout.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/addProduct.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/employeeProfile.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/employee/EmployeeDTO.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/customer/CustomerDAO.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/addEmployee.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/utils/DBUtils.java</file>
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/sidebar.jsp</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/ViewCustomerServlet.java</file>
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/UpdateProfileEmployeeServlet.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/LoginServlet.java</file>
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/UpdateProfileCustomerServlet.java</file>
-            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/customerProfile.jsp</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/utils/DBUtils.java</file>
             <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/AddEmployeeServlet.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/employeeProfile.jsp</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/customer/CustomerDAO.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/LoginServlet.java</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/web/addEmployee.jsp</file>
+            <file>file:/D:/Project%20Zeor9%20Shop/Zero9Shop/src/java/shop/servlet/ViewCustomerServlet.java</file>
         </group>
     </open-files>
 </project-private>

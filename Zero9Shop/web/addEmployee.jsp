@@ -70,7 +70,7 @@
                                             <div class="form-group">
                                                 <label>Employee ID</label>
                                                 <input type="text" class="d-none" name="idEmp" value="">
-                                                <input type="text" class="form-control border-input" disabled="" value="<%= idEmp%>">
+                                                <input type="text" class="form-control border-input" disabled="" value="<%=idEmp%>">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -103,36 +103,37 @@
                                         </div> 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Gender</label>
-                                                <input type="text" class="form-control border-input" name="txtGender" value="">
-                                            </div>
-                                        </div> 
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label>Phone</label>
-                                                <input type="text" class="form-control border-input" name="txtPhone" value="">
+                                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Gender</label>
+                                                <br>
+                                                <label class="radio-inline mr-2 mt-2"><input type="radio" name="chkGender" value="Male"  <c:if test="${gender == 'Male'}"> checked </c:if>>Male</label>
+                                                <label class="radio-inline ml-2 mt-2"><input type="radio" name="chkGender" value="Female" <c:if test="${gender == 'Female'}"> checked </c:if>>Female</label>
+                                                </div>
+                                            </div> 
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="text" class="form-control border-input" name="txtPhone" value="">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Started Day</label>
-                                                <input type="text" class="form-control border-input" disabled="" value="<%= date %>">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Started Day</label>
+                                                    <input type="text" class="form-control border-input" disabled="" value="<%= date%>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Birthday</label>
-                                                <input type="text" class="form-control border-input" name="txtBirthdate" value="">
+                                                <input type="date" class="form-control border-input" name="txtBirthdate" value="">
                                             </div>
                                         </div>
 
                                     </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-info btn-fill btn-wd">Add Profile</button>
-                                        <!--                                        <button type="submit" class="btn btn-danger btn-fill btn-wd">Delete Profile</button>-->
                                     </div>
                                     <div class="clearfix"></div>
                                 </form>

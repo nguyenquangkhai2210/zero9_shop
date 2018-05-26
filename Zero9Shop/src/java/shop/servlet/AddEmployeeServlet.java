@@ -43,14 +43,9 @@ public class AddEmployeeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String url = addNewEmployee;
         try {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String idEmp = EmployeeDAO.getIdEmployee();
-            request.setAttribute("idEmp", idEmp);
-            request.setAttribute("dateCurrent", dateFormat.format(new Date()));
+            
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AddEmployeeServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();
         }

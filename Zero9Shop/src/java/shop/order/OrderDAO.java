@@ -102,24 +102,5 @@ public class OrderDAO implements Serializable {
         return list;
     }
 
-    public static CustomerDTO getCustomerByID(String cusID) throws ClassNotFoundException, SQLException {
-        Connection conn = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-        CustomerDTO list = null;
-        try {
-            conn = DBUtils.getConnection("sa", "sa", "SHOPPINGONLINE");
-            String sql = "SELECT CusUsername FROM tblCustomer WHERE CusID = ?";
-            stm = conn.prepareStatement(sql);
-            stm.setString(1, cusID);
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                String cusUsername = rs.getString("CusUsername");
-                list = new CustomerDTO(cusID, cusUsername);
-            }
-        } finally {
-            DBUtils.closeConnection(conn, stm, rs);
-        }
-        return list;
-    }
+
 }

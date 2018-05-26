@@ -49,26 +49,26 @@
 
                                     <div class="col-md-12">
                                         <h5>
-                                          
-                                                <br><small>Role</small></h5>
-                                        </div>
 
+                                            <br><small>Role</small></h5>
                                     </div>
+                                       
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-8 col-md-7">
-                            <div class="card">
-                                <div class="header">
-                                    <h4 class="title">Edit Profile</h4>
-                                </div>
-                                <div class="content">
-                                    <form method="POST" action="UpdateProfileEmployeeServlet">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="form-group">
-                                                    <label>Employee ID</label>
-                                                    <input type="text" class="d-none" name="idEmp" value="<c:out value="${empProfile.empId }"/>">
+                    </div>
+                    <div class="col-lg-8 col-md-7">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Edit Profile</h4>
+                            </div>
+                            <div class="content">
+                                <form method="POST" action="UpdateProfileEmployeeServlet">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label>Employee ID</label>
+                                                <input type="text" class="d-none" name="idEmp" value="<c:out value="${empProfile.empId }"/>">
                                                 <input type="text" class="form-control border-input" disabled="" value="<c:out value="${empProfile.empId }"/>">
                                             </div>
                                         </div>
