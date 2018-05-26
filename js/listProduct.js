@@ -2,7 +2,7 @@ angular.module('listProduct', ['ngCookies', 'navBar', 'ngRoute'])
     .factory('PagerService', PagerService)
     .controller('controllerListProduct', controllerListProduct)
 
-function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
+function controllerListProduct(PagerService, $scope, $cookies, $http, $window, $route) {
     var vm = this;
     //get json
     $http.get("http://5ad6e99acd67c10014c73d9d.mockapi.io/product").then(function (response) {
@@ -22,22 +22,38 @@ function controllerListProduct(PagerService, $scope, $cookies, $http, $window) {
     $scope.total = 0;
 
     $scope.filterFrom = " ";
-    $scope.openFilterFrom = function(){
+    $scope.openFilterFrom = function () {
         $scope.filterFrom = "filterFromShow";
     }
 
-    $scope.closeFilterFrom = function(){
+    $scope.closeFilterFrom = function () {
         $scope.filterFrom = " ";
     }
 
     $scope.choosedColor = " ";
-    $scope.chooseColor = function(color){
+    $scope.chooseColor = function (color) {
         $scope.choosedColor = color;
     }
 
-    $scope.notChooseColor = function(){
+    $scope.notChooseColor = function () {
         $scope.choosedColor = " ";
     }
+
+    var stransformFillter;
+
+    stransformFillter = function () {
+        if($window.pageYOffset > 40){
+            $scope.filter = "positionFixed";
+            $route.reload();
+        }
+        else{
+            $scope.filter = " ";
+            $route.reload();
+        }
+    };
+
+    angular.element($window).on('scroll', stransformFillter);
+
     $scope.addItemToCart = function (product) {
         if ($scope.cart.length === 0) {
             product.count = 1;

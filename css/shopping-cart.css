@@ -1,0 +1,12 @@
+.deleteProduct{
+    visibility: hidden;
+    margin: 0.5rem;
+}
+
+tr:hover th .deleteProduct{
+    visibility: visible;
+}
+
+ul.nav{
+    flex-wrap: nowrap;
+}

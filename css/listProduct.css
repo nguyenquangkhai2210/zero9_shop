@@ -2,6 +2,7 @@
     width: 100%;
     height: auto;
     padding: 100px 2.2rem 0 2.2rem;
+    background-color: white;
 }
 
 .content .wrap-product{
@@ -146,6 +147,14 @@
     width: auto;
 }
 
+.header .positionFixed{
+    animation: positionFixed 1.5s forwards;
+    /* color:  white; */
+    background: rgb(240,240,240);
+    border-radius: 1rem;
+    padding:  0.2rem;
+}
+
 .header .filter button {
     background-color: rgba(255, 255, 255, 0);
     color: rgb(70, 70, 70);
@@ -166,7 +175,8 @@
     right: 2rem;
     width: 50vw;
     height: 70vh;
-    background-color: white;
+    background-color: rgb(245,245,245);
+    border: 1px solid rgb(235,235,235);
     z-index: 1;
 }
 
@@ -194,6 +204,12 @@
     flex-direction: column;
 }
 
+.header .filter .filterFromHidden .layout .style span, .texture span {
+    margin-top: 1rem;
+    width: 100% !important;
+}
+
+
 .header .filter .filterFromHidden .layout h3 {
     width: 100%;
     font-size: 1.3rem !important;
@@ -207,6 +223,11 @@
 .header .filter .filterFromHidden .layout .button{
     width: 100%;
     text-align: right;
+    margin-top: 1.5rem;
+}
+
+.header .filter .filterFromHidden .layout .button button{
+    font-size: 1.45rem;
 }
 
 .header .filter .filterFromHidden .layout .color span{
@@ -278,5 +299,19 @@
     to {
         visibility: hidden;
         opacity: 0;
+    }
+}
+
+@keyframes positionFixed {
+    from{
+        position: static;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        position: fixed;
+        top: 2.5rem;
+        right: 2.5rem;
+        z-index: 1;
     }
 }

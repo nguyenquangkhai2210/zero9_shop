@@ -2,7 +2,7 @@ var navbarComponent = {
     bindings: {
         navbar: '<'
     },
-    controller: function ($scope, $window, $cookies, $route, $anchorScroll, $location) {
+    controller: function ($scope, $window, $cookies, $route, $anchorScroll) {
         $scope.productType = ['hat', 'shirt', 'pants', 'shoes', 'accessories'];
         $scope.productsData = [{
             id: 1,
@@ -34,26 +34,28 @@ var navbarComponent = {
         $scope.textColor = "text-white";
         $scope.icon = "navbar-toggler-icon-white";
 
-        var handler;
-
-        handler = function () {
-            if($window.pageYOffset > 10){
-                $scope.bgScroll = "bgScroll";
-                $route.reload();
-            }
-            else{
-                $scope.bgScroll = " ";
-                $route.reload();
-            }
-        };
-
-        angular.element($window).on('scroll', handler);
-
         this.$onInit = function () {
             if (this.navbar == "blackColor") {
                 $scope.addColor();
             }
         }
+
+        var handler;
+
+        handler = function () {
+            if ($window.pageYOffset > 10) {
+                $scope.bgScroll = "bgScroll";
+                $scope.filter = "positionFixed";
+                $route.reload();
+            }
+            else {
+                $scope.bgScroll = " ";
+                $scope.filter = " ";
+                $route.reload();
+            }
+        };
+
+        angular.element($window).on('scroll', handler);
 
         $scope.controlMiniBar = function () {
             if ($scope.display == "dsHidden") {
@@ -123,9 +125,12 @@ var navbarComponent = {
         }
 
         $window.onclick = function () {
-            $scope.cart = $cookies.getObject('cart');
-            $scope.count = $scope.cart.length;
-            $route.reload();
+            try {
+                $scope.cart = $cookies.getObject('cart');
+                $scope.count = $scope.cart.length;
+                $route.reload();
+            } catch (err) {
+            }
         }
 
     },

@@ -1,1 +1,1 @@
-angular.module('homePage', ['navBar']);
+angular.module('homePage', ['navBar', 'ngCookies', 'ngRoute']);
