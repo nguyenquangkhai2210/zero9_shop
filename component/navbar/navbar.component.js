@@ -34,9 +34,11 @@ var navbarComponent = {
         $scope.textColor = "text-white";
         $scope.icon = "navbar-toggler-icon-white";
 
+        var typeNavbar = "whileColor";
         this.$onInit = function () {
             if (this.navbar == "blackColor") {
                 $scope.addColor();
+                typeNavbar = "blackColor";
             }
         }
 
@@ -86,10 +88,8 @@ var navbarComponent = {
 
         $scope.clearDropDown = function () {
             $scope.choosedInfo = " ";
-            this.$onInit = function () {
-                if (this.navbar !== "blackColor") {
-                    $scope.clearColor();
-                }
+            if (typeNavbar != "blackColor") {
+                $scope.clearColor();
             }
 
         };
