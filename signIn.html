@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="signIn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/signUp.css">
+    <link rel="stylesheet" href="./css/home-page.css">
+    <script src="./lib/angular.min.js"></script>
+    <script src="./lib/angular-router.min.js"></script>
+    <script src="./lib/angular-cookies.min.js"></script>
+</head>
+
+<body>
+    <navbar navbar="navbar = 'blackColor'"></navbar>
+    <div class="layout row">
+        <div class="myAccount col-md-3">
+            <h3>My account</h3>
+            <a class="uniderLine" href="#">Create an account</a>
+        </div>
+        <form ng-controller="signInForm" name="formSignIn" class="formCreate col-md-9" novalidate>
+            <h3>Login</h3>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputfirstName">
+                        Username or email address*
+                    </label>
+                    <input type="text" class="form-control" name="username" ng-model="user.username" required>
+                    <div class="warning" role="alert">
+                        <span class="error" ng-show="formSignIn.username.$invalid && !formSignIn.username.$pristine">Username</span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword">Password*</label>
+                    <input type="password" class="form-control" id="inputPassword" name="password" ng-model="user.password" required>
+                    <div class="warning" role="alert">
+                        <span class="error" ng-show="formSignIn.password.$invalid && !formSignIn.password.$pristine">Error password</span>
+                    </div>
+                </div>
+                <div class="form-group ckeckLogin col-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <span class="checkmark"></span>
+                        <label class="form-check-label" for="gridCheck">
+                            Remember me
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+                <div></div>
+            </div>
+            <div class="typeSubmit row">
+                <div class="form-group uniderLine">
+                    <span>Lost your password?</span>
+                </div>
+                <button type="submit" class="btn btn-primary float-right" ng-disabled="formSignUp.$invalid">Sign in</button>
+            </div>
+        </form>
+    </div>
+    <script src="./js/signIn.js"></script>
+    <script src="./component/navbar/navbar.module.js"></script>
+    <script src="./component/navbar/navbar.component.js"></script>
+</body>
+
+</html>

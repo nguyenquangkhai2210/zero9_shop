@@ -23,7 +23,7 @@ body .wrap-navbar{
     color: #363636;
 }
 
-.myAccount .uniderLine:hover::after{
+.uniderLine:hover::after{
     animation: moveUnderline 0.5s forwards;
 }
 
@@ -130,6 +130,13 @@ body .wrap-navbar{
 }
 .typeSubmit .form-group .checkmark::after{
     border-radius: 0;
+}
+
+.ckeckLogin .checkmark{
+    border-radius: 0 !important;
+}
+.ckeckLogin .checkmark::after{
+    border-radius: 0 !important;
 }
 
 @keyframes warning {
