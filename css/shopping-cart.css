@@ -1,3 +1,36 @@
+html{
+    background-color: #ffffff !important;
+    height: auto!important;
+}
+
+body{
+    background-color: #ffffff !important;
+    height: auto!important;
+}
+
+body .wrap-navbar{
+    position: relative;
+}
+
+.layout{
+    max-width: 1150px;
+    margin: auto;
+    padding-top: 1.5rem;
+}
+
+.table .tableHead {
+    background-color: #ffffff!important;
+}
+
+.table .tableHead tr th{
+    font-weight: 500;
+}
+
+.table .tableBody tr td input{
+    width: 4rem;
+    padding: 0.4rem 0.7rem;
+}
+
 .deleteProduct{
     visibility: hidden;
     margin: 0.5rem;
@@ -9,4 +42,130 @@ tr:hover th .deleteProduct{
 
 ul.nav{
     flex-wrap: nowrap;
+}
+
+
+.updateCart input{
+    width: 12rem;
+    height: 2.6rem;
+    padding-left: 1rem;
+}
+.updateCart button{
+
+    width: 10rem;
+    height: 2.6rem;
+    border: none;
+    margin-left: 0.5rem;
+    background-color: #ededed;
+}
+
+.layoutSubmitForm{
+    width: 100%;
+}
+
+.submitForm{
+    max-width: 400px;
+    margin-top: 1rem;
+    margin-left: auto; 
+}
+
+.submitForm .btnSubmit{
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 0;
+    background-color: #0f0f0f;
+}
+
+.submitForm .subTotal{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    padding: 1rem 0;
+    border-bottom: 1px solid black;
+}
+
+.submitForm .subTotal h6{
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.submitForm .shipping{
+    padding: 1rem 0;
+    border-bottom: 1px solid black;
+}
+
+.submitForm .shipping legend{
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.submitForm .shipping .form-check{
+    text-align: right;
+}
+
+.submitForm .shipping .form-check label{
+    font-size: 0.9rem;
+}
+
+.submitForm .shipping .form-check input{
+    margin: 0;
+}
+
+.form-check input[type = radio], .form-check input[type = checkbox]{
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+    height: 1rem;
+    width: 1rem;
+    top: 0.2rem;
+    z-index: 1;
+}
+
+.form-check .checkmark {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    height: 1rem;
+    width: 1rem;
+    background-color: #eee;
+    border-radius: 50%;
+    margin-top: -0.4rem;
+    border: 1px solid #313131;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.form-check input:checked ~ .checkmark:after {
+    display: block;
+    animation: checkmark 0.5s forwards;
+}
+
+/* Style the indicator (dot/circle) */
+.form-check .checkmark:after {
+ 	top: 50%;
+ 	left: 50%;
+ 	border-radius: 50%;
+ 	background: #363636;
+}
+
+@keyframes checkmark{
+    from{
+        width: 0.02rem;
+        height: 0.02rem;
+        margin-top: -0.01rem;
+        margin-left: -0.01rem;
+    }
+    to{
+        margin-top: -0.5rem;
+        margin-left: -0.5rem;
+        width: 1rem;
+        height: 1rem;
+    }
 }
